@@ -13,7 +13,8 @@ class _WrapperState extends State<Wrapper> {
   @override
   Widget build(BuildContext context) {
     // replace with proper logic later
-    bool isLoggedIn = 1 > 2;
-    return isLoggedIn ? Home() : Authenticate();
+    // bool isLoggedIn = 1 > 2;
+    // return isLoggedIn ? Home() : Authenticate();
+    return Authenticate();
   }
 }
