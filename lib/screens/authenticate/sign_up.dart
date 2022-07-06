@@ -83,7 +83,7 @@ class _SignUpState extends State<SignUp> {
                     hintText: 'Enter password',
                   ),
                   validator: (String? value) {
-                    if (value == null || value.isEmpty || value.length < 2) {
+                    if (value == null || value.isEmpty || value.length < 6) {
                       return 'Please enter a valid password greater than 6 characters';
                     }
                     return null;
@@ -99,12 +99,12 @@ class _SignUpState extends State<SignUp> {
                         // the form is invalid.
                         if (_formKey.currentState!.validate()) {
                           // Process data.
+                          Navigator.push(
+                              context,
+                              // MaterialPageRoute(builder: (context) => const Home()));
+                              MaterialPageRoute(
+                                  builder: (context) => const ModeSelect()));
                         }
-                        Navigator.push(
-                            context,
-                            // MaterialPageRoute(builder: (context) => const Home()));
-                            MaterialPageRoute(
-                                builder: (context) => const ModeSelect()));
                         // Navigator.push(context, '/home');
                       },
                       child: const Text('Sign Up'),
