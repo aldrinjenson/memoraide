@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:memoria/screens/authenticate/authenticate.dart';
-import 'package:memoria/screens/home/home.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);

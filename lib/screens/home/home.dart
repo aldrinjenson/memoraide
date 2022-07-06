@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
-          Text('Lorem ipsum'),
+          Center(child: Text('Home Screen')),
         ],
       ),
     );
