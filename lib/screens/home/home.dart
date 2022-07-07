@@ -7,6 +7,33 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+Widget homeButton(BuildContext context, String g, String h) {
+  return Container(
+    padding: EdgeInsets.all(15),
+    width: double.infinity,
+    height: 120,
+    child: TextButton(
+      style: TextButton.styleFrom(
+        backgroundColor: Theme.of(context).primaryColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
+        ),
+      ),
+      onPressed: () {
+        if (h == "home")
+          Navigator.pop(context);
+        else
+          Navigator.pushNamed(context, '/$h');
+      },
+      child: Text(
+        g,
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 16, color: Colors.white),
+      ),
+    ),
+  );
+}
+
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
@@ -14,14 +41,40 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: const Text('Memoria'),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Text('Lorem ipsum'),
-        ],
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Stack(
+                children: [
+                  Image(
+                    image: AssetImage("oldppl.jpg"),
+                  ),
+                  Positioned(
+                      top: 50,
+                      left: 50,
+                      right: 50,
+                      child: Text(
+                        "Good morning! Welcome, Nayana!",
+                        // centerTitle: true,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                        ),
+                      ))
+                ],
+              ),
+              homeButton(context, "GEOLOCATION", "geolocation"),
+              homeButton(context, "FACES", "faces"),
+              homeButton(context, "SNAPSHOTS", "snapshots"),
+              homeButton(context, "JOURNAL", "journal"),
+            ],
+          ),
+        ),
       ),
     );
   }
