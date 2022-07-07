@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:memoria/screens/home/home.dart';
 
-class snapshots extends StatefulWidget {
-  const snapshots({Key? key}) : super(key: key);
+class faceProfile extends StatefulWidget {
+  const faceProfile({Key? key}) : super(key: key);
 
   @override
-  State<snapshots> createState() => _snapshotsState();
+  State<faceProfile> createState() => _facesState();
 }
 
-class _snapshotsState extends State<snapshots> {
+class _facesState extends State<faceProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('SNAPSHOTS'),
+        title: const Text('SHARAT'),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
       ),
@@ -21,6 +21,9 @@ class _snapshotsState extends State<snapshots> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // Image(
+          //   image: AssetImage("sharat.png"),
+          // ),
           homeButton(context, "HOME", "home"),
         ],
       ),

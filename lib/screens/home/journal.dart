@@ -19,9 +19,26 @@ class _JournalState extends State<Journal> {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+        // ignore: prefer_const_literals_to_create_immutables
         children: [
-          homeButton(context, "HOME", "home"),
+          SizedBox(
+            height: 30,
+          ),
+          Center(
+            child: Container(
+              height: 200,
+              width: 450,
+              padding: EdgeInsets.all(15),
+              color: Colors.grey[300],
+              child: TextField(
+                keyboardType: TextInputType.multiline,
+                minLines: 15,
+                maxLines: null, // when user presses enter it will adapt to it
+                decoration:
+                    InputDecoration.collapsed(hintText: 'Enter your thoughts!'),
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -28,7 +28,11 @@ Widget homeButton(BuildContext context, String g, String h) {
       child: Text(
         g,
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 16, color: Colors.white),
+        style: TextStyle(
+          fontSize: 16,
+          color: Colors.white,
+          fontFamily: 'Jost',
+        ),
       ),
     ),
   );
@@ -55,17 +59,16 @@ class _HomeState extends State<Home> {
                     image: AssetImage("oldppl.jpg"),
                   ),
                   Positioned(
-                      top: 50,
-                      left: 50,
-                      right: 50,
-                      child: Text(
-                        "Good morning! Welcome, Nayana!",
-                        // centerTitle: true,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                        ),
-                      ))
+                    top: 40,
+                    left: 100,
+                    child: Text(
+                      "Good morning! \nWelcome, Nayana!",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                      ),
+                    ),
+                  )
                 ],
               ),
               homeButton(context, "GEOLOCATION", "geolocation"),
