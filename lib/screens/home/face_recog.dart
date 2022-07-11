@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:memoria/screens/home/home.dart';
 
 class faces extends StatefulWidget {
   const faces({Key? key}) : super(key: key);
@@ -52,6 +51,7 @@ class _facesState extends State<faces> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
                 FaceButton(),
                 FaceButton(),
@@ -60,7 +60,7 @@ class _facesState extends State<faces> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 FaceButton(),
                 FaceButton(),
                 FaceButton(),
@@ -68,7 +68,7 @@ class _facesState extends State<faces> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 FaceButton(),
                 FaceButton(),
                 FaceButton(),

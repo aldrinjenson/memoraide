@@ -1,5 +1,8 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:memoria/screens/home/home.dart';
+// import 'package:memoria/screens/home/home.dart';
 
 class snapshots extends StatefulWidget {
   const snapshots({Key? key}) : super(key: key);

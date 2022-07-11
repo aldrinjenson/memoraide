@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memoria/screens/home/home.dart';
+// import 'package:memoria/screens/home/home.dart';
 
 class Journal extends StatefulWidget {
   const Journal({Key? key}) : super(key: key);
