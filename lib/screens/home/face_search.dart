@@ -1,4 +1,6 @@
-import 'package:camera/camera.dart';
+// import 'package:camera/camera.dart';
+import 'dart:io';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
 
 class FaceSearch extends StatefulWidget {
@@ -10,11 +12,16 @@ class FaceSearch extends StatefulWidget {
 
 class _FaceSearchState extends State<FaceSearch> {
   void takePic() async {
-    final cameras = await availableCameras();
-    print(cameras);
-// Get a specific camera from the list of available cameras.
-    final firstCamera = cameras.first;
-    print(firstCamera);
+    // final cameras = await availableCameras();
+    // print(cameras);
+    // final firstCamera = cameras.first;
+    // print(firstCamera);
+  }
+
+  void initState() {
+    super.initState();
+    // Enable virtual display.
+    if (Platform.isAndroid) WebView.platform = AndroidWebView();
   }
 
   @override
@@ -34,7 +41,10 @@ class _FaceSearchState extends State<FaceSearch> {
                     print('presed');
                     takePic();
                   },
-                  child: Text('Take photo'))
+                  child: Text('Take photo')),
+              WebView(
+                initialUrl: 'https://flutter.dev',
+              )
             ],
           )),
         ));
