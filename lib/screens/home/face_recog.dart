@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memoria/screens/home/face_search.dart';
 
 class faces extends StatefulWidget {
   const faces({Key? key}) : super(key: key);
@@ -41,7 +42,10 @@ class _facesState extends State<faces> {
                       size: 30,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/faceProfile');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const FaceSearch()));
                     },
                   ),
                 ),
@@ -96,10 +100,10 @@ class FaceButton extends StatelessWidget {
       child: ElevatedButton(
         child: Stack(
           children: const [
-            Image(
-              image: AssetImage("Sharat.png"),
-              fit: BoxFit.fill,
-            ),
+            // Image(
+            //   image: AssetImage("Sharat.png"),
+            //   fit: BoxFit.fill,
+            // ),
             Positioned(
               top: 10,
               left: 10,

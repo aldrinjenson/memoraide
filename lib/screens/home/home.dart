@@ -56,9 +56,9 @@ class _HomeState extends State<Home> {
             children: [
               Stack(
                 children: const [
-                  Image(
-                    image: AssetImage("oldppl.jpg"),
-                  ),
+                  // Image(
+                  //   image: AssetImage("oldppl.jpg"),
+                  // ),
                   Positioned(
                     top: 40,
                     left: 100,
