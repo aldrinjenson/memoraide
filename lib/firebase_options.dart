@@ -49,7 +49,7 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
+  static FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyCWzyfXzoYtMkUnlxsbpeFJVJzPX3Dp3cQ',
     appId: '1:106992346759:web:cc42a9d765b1b54549fa22',
     messagingSenderId: '106992346759',
@@ -58,7 +58,7 @@ class DefaultFirebaseOptions {
     storageBucket: 'memoria-43c01.appspot.com',
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
+  static FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyD9IpiyQ_WQeL09tu0FfzNNvUDRS59JQNw',
     appId: '1:106992346759:android:d7b42696150b04b649fa22',
     messagingSenderId: '106992346759',

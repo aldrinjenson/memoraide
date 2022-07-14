@@ -29,21 +29,23 @@ Future<void> main() async {
 //       print('DocumentSnapshot added with ID: ${doc.id}'));
 
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MaterialApp(
-    theme: ThemeData(
-      fontFamily: 'Jost',
-      primaryColor: const Color(0xFF3D96E8),
+  runApp(
+    MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'Jost',
+        primaryColor: const Color(0xFF3D96E8),
+      ),
+      initialRoute: '/faces',
+      routes: {
+        '/': (context) => const Wrapper(),
+        '/home': (context) => const Home(),
+        '/geolocation': (context) => const geolocation(),
+        '/snapshots': (context) => const Snapshots(),
+        '/faces': (context) => const Faces(),
+        '/facesearch': (context) => const FaceSearch(),
+        '/faceProfile': (context) => const FaceProfile(),
+        '/journal': (context) => const Journal(),
+      },
     ),
-    initialRoute: '/faces',
-    routes: {
-      '/': (context) => const Wrapper(),
-      '/home': (context) => const Home(),
-      '/geolocation': (context) => const geolocation(),
-      '/snapshots': (context) => const Snapshots(),
-      '/faces': (context) => const Faces(),
-      '/facesearch': (context) => const FaceSearch(),
-      '/faceProfile': (context) => const FaceProfile(),
-      '/journal': (context) => const Journal(),
-    },
-  ));
+  );
 }
