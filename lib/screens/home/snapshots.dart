@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:memoria/screens/home/home.dart';
 
-class snapshots extends StatefulWidget {
-  const snapshots({Key? key}) : super(key: key);
+class Snapshots extends StatefulWidget {
+  const Snapshots({Key? key}) : super(key: key);
 
   @override
-  State<snapshots> createState() => _snapshotsState();
+  State<Snapshots> createState() => _SnapshotsState();
 }
 
-class _snapshotsState extends State<snapshots> {
+class _SnapshotsState extends State<Snapshots> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

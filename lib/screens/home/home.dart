@@ -21,9 +21,9 @@ Widget homeButton(BuildContext context, String g, String h) {
       ),
       onPressed: () {
         if (h == "home")
-          Navigator.pop(context);
+          {Navigator.pop(context);}
         else
-          Navigator.pushNamed(context, '/$h');
+         { Navigator.pushNamed(context, '/$h'); }
       },
       child: Text(
         g,
@@ -56,7 +56,7 @@ class _HomeState extends State<Home> {
               Stack(
                 children: [
                   Image(
-                    image: AssetImage("oldppl.jpg"),
+                    image: AssetImage("assets/oldppl.jpg"),
                   ),
                   Positioned(
                     top: 40,

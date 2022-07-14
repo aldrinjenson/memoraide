@@ -29,7 +29,7 @@ class _JournalState extends State<Journal> {
               height: 200,
               width: 450,
               padding: EdgeInsets.all(15),
-              color: Colors.grey[300],
+              color: Colors.grey[100],
               child: TextField(
                 keyboardType: TextInputType.multiline,
                 minLines: 15,

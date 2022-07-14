@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memoria/screens/home/face_Recog.dart';
+import 'package:memoria/screens/home/faceRecog.dart';
 import 'package:memoria/screens/home/face_profile.dart';
 import 'package:memoria/screens/home/geolocation.dart';
 import 'package:memoria/screens/home/home.dart';
@@ -18,9 +18,9 @@ void main() {
       '/': (context) => const Wrapper(),
       '/home': (context) => const Home(),
       '/geolocation': (context) => const geolocation(),
-      '/snapshots': (context) => const snapshots(),
-      '/faces': (context) => const faces(),
-      '/faceProfile': (context) => const faceProfile(),
+      '/snapshots': (context) => const Snapshots(),
+      '/faces': (context) => const Faces(),
+      '/faceProfile': (context) => const FaceProfile(),
       '/journal': (context) => const Journal(),
     },
   ));

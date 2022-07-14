@@ -17,11 +17,11 @@ class ModeSelectCard extends StatelessWidget {
     return Center(
       child: Container(
         color: Theme.of(context).primaryColor,
-        margin: EdgeInsets.symmetric(vertical: 20),
+        margin: EdgeInsets.symmetric(vertical: 10),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               ListTile(
                 leading: Icon(
@@ -32,7 +32,7 @@ class ModeSelectCard extends StatelessWidget {
                 title: Text(
                   title,
                   style: const TextStyle(
-                    fontSize: 24,
+                    fontSize: 20,
                     // color: Colors.white,
                   ),
                 ),

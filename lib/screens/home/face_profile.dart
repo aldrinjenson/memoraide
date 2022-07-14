@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:memoria/screens/home/home.dart';
 
-class faceProfile extends StatefulWidget {
-  const faceProfile({Key? key}) : super(key: key);
+class FaceProfile extends StatefulWidget {
+  const FaceProfile({Key? key}) : super(key: key);
 
   @override
-  State<faceProfile> createState() => _facesState();
+  State<FaceProfile> createState() => _FacesState();
 }
 
-class _facesState extends State<faceProfile> {
+class _FacesState extends State<FaceProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

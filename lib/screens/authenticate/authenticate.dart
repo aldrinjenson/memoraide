@@ -12,11 +12,9 @@ class _AuthenticateState extends State<Authenticate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Memoria'),
-          centerTitle: true,
-          backgroundColor: Colors.blue[400],
-        ),
-        body: Center(child: (SignUp())));
+      body: Center(
+        child: (SignUp()),
+      ),
+    );
   }
 }

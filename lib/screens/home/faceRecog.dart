@@ -1,14 +1,16 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:memoria/screens/home/home.dart';
 
-class faces extends StatefulWidget {
-  const faces({Key? key}) : super(key: key);
+class Faces extends StatefulWidget {
+  const Faces({Key? key}) : super(key: key);
 
   @override
-  State<faces> createState() => _facesState();
+  State<Faces> createState() => _FacesState();
 }
 
-class _facesState extends State<faces> {
+class _FacesState extends State<Faces> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +54,7 @@ class _facesState extends State<faces> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
                 FaceButton(),
                 FaceButton(),
@@ -60,6 +63,7 @@ class _facesState extends State<faces> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
                 FaceButton(),
                 FaceButton(),
@@ -68,6 +72,7 @@ class _facesState extends State<faces> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
                 FaceButton(),
                 FaceButton(),
@@ -97,7 +102,7 @@ class FaceButton extends StatelessWidget {
         child: Stack(
           children: const [
             Image(
-              image: AssetImage("Sharat.png"),
+              image: AssetImage("assets/Sharat.png"),
               fit: BoxFit.fill,
             ),
             Positioned(

@@ -12,35 +12,28 @@ class _ModeSelectState extends State<ModeSelect> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Memoria'),
-          centerTitle: true,
-          backgroundColor: Theme.of(context).primaryColor,
-        ),
         body: Padding(
-          padding: EdgeInsets.all(20),
-          // ignore: prefer_const_literals_to_create_immutables
-          child: SingleChildScrollView(
-            child: Column(children: [
-              Text(
-                "Select Mode",
-                style: TextStyle(fontSize: 30),
-              ),
-              SizedBox(height: 20),
-              ModeSelectCard(
-                title: "Sole Care Taker",
-                subTitle: "This is you alone",
-              ),
-              ModeSelectCard(
-                title: "Care Taker",
-                subTitle: "You have a patient and he is pretty paavam",
-              ),
-              ModeSelectCard(
-                title: "Patient",
-                subTitle: "You're having memory issues",
-              ),
-            ]),
-          ),
-        ));
+      padding: EdgeInsets.all(20),
+      // ignore: prefer_const_literals_to_create_immutables
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Text(
+          "Select Mode",
+          style: TextStyle(fontSize: 30),
+        ),
+        SizedBox(height: 20),
+        ModeSelectCard(
+          title: "Sole Care Taker",
+          subTitle: "This is you alone",
+        ),
+        ModeSelectCard(
+          title: "Care Taker",
+          subTitle: "You have a patient and he is pretty paavam",
+        ),
+        ModeSelectCard(
+          title: "Patient",
+          subTitle: "You're having memory issues",
+        ),
+      ]),
+    ));
   }
 }
