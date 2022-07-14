@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:memoria/screens/home/face_search.dart';
+import 'package:memoria/screens/home/home.dart';
 
 class ModeSelectCard extends StatelessWidget {
   String title = '';
@@ -50,11 +50,14 @@ class ModeSelectCard extends StatelessWidget {
                   ),
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        // MaterialPageRoute(builder: (context) => const Home()));
-                        // MaterialPageRoute(builder: (context) => const Home()));
-                        MaterialPageRoute(
-                            builder: (context) => const FaceSearch()));
+                      context,
+                      // MaterialPageRoute(builder: (context) => const Home()));
+                      MaterialPageRoute(
+                        builder: (context) => const Home(),
+                      ),
+                    );
+                    // MaterialPageRoute(
+                    //     builder: (context) => const FaceSearch()));
                   },
                 ),
               ),
