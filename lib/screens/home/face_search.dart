@@ -30,7 +30,7 @@ class _FaceSearchState extends State<FaceSearch> {
         appBar: AppBar(
           title: const Text('Memoria'),
           centerTitle: true,
-          backgroundColor: Colors.orange[400],
+          backgroundColor: Theme.of(context).primaryColor,
         ),
         body: Center(
           child: (Column(
