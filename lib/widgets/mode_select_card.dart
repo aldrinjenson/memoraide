@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:memoria/screens/home/face_profile.dart';
 import 'package:memoria/screens/home/face_search.dart';
 
 class ModeSelectCard extends StatelessWidget {
