@@ -18,6 +18,7 @@ class _FaceSearchState extends State<FaceSearch> {
     // print(firstCamera);
   }
 
+  @override
   void initState() {
     super.initState();
     // Enable virtual display.
