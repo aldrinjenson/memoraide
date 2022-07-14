@@ -1,7 +1,8 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:memoria/screens/home/home.dart';
+import 'package:memoria/screens/home/face_profile.dart';
+import 'package:memoria/screens/home/face_search.dart';
 
 class ModeSelectCard extends StatelessWidget {
   String title = '';
@@ -12,8 +13,6 @@ class ModeSelectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(title);
-    print(subTitle);
     return Center(
       child: Container(
         color: Theme.of(context).primaryColor,
@@ -54,7 +53,9 @@ class ModeSelectCard extends StatelessWidget {
                     Navigator.push(
                         context,
                         // MaterialPageRoute(builder: (context) => const Home()));
-                        MaterialPageRoute(builder: (context) => const Home()));
+                        // MaterialPageRoute(builder: (context) => const Home()));
+                        MaterialPageRoute(
+                            builder: (context) => const FaceSearch()));
                   },
                 ),
               ),

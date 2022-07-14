@@ -20,10 +20,11 @@ Widget homeButton(BuildContext context, String g, String h) {
         ),
       ),
       onPressed: () {
-        if (h == "home")
-          {Navigator.pop(context);}
-        else
-         { Navigator.pushNamed(context, '/$h'); }
+        if (h == "home") {
+          Navigator.pop(context);
+        } else {
+          Navigator.pushNamed(context, '/$h');
+        }
       },
       child: Text(
         g,
@@ -54,6 +55,7 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Stack(
+                // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   Image(
                     image: AssetImage("assets/oldppl.jpg"),

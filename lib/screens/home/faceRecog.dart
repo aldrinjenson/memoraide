@@ -1,7 +1,6 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'package:memoria/screens/home/home.dart';
+import 'package:memoria/screens/home/face_search.dart';
 
 class Faces extends StatefulWidget {
   const Faces({Key? key}) : super(key: key);
@@ -44,7 +43,10 @@ class _FacesState extends State<Faces> {
                       size: 30,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/faceProfile');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const FaceSearch()));
                     },
                   ),
                 ),
@@ -63,8 +65,7 @@ class _FacesState extends State<Faces> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
+              children: const [
                 FaceButton(),
                 FaceButton(),
                 FaceButton(),
@@ -72,8 +73,7 @@ class _FacesState extends State<Faces> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
+              children: const [
                 FaceButton(),
                 FaceButton(),
                 FaceButton(),
