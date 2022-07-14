@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:memoria/screens/authenticate/mode_select.dart';
 
@@ -51,6 +52,11 @@ class _SignUpState extends State<SignUp> {
                         }
                         return null;
                       },
+                      onSaved: (String? value) {
+                        setState(() {
+                          name = value!;
+                        });
+                      },
                     ),
                     TextFormField(
                       decoration: const InputDecoration(
@@ -67,6 +73,11 @@ class _SignUpState extends State<SignUp> {
                         }
                         return null;
                       },
+                      onSaved: (String? value) {
+                        setState(() {
+                          email = value!;
+                        });
+                      },
                     ),
                     TextFormField(
                       decoration: const InputDecoration(
@@ -81,6 +92,11 @@ class _SignUpState extends State<SignUp> {
                         }
                         return null;
                       },
+                      onSaved: (String? value) {
+                        setState(() {
+                          phoneNo = value!;
+                        });
+                      },
                     ),
                     TextFormField(
                       decoration: const InputDecoration(
@@ -94,25 +110,47 @@ class _SignUpState extends State<SignUp> {
                         }
                         return null;
                       },
+                      onSaved: (String? value) {
+                        setState(() {
+                          password = value!;
+                        });
+                      },
                     ),
                     SizedBox(height: 40),
                     Center(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             // Validate will return true if the form is valid, or false if
                             // the form is invalid.
+                            print(name);
                             if (!_formKey.currentState!.validate()) {
-                              // Process data.
+                              _formKey.currentState?.save();
+                              print(name);
+                              print(email);
+                              print(phoneNo);
+                              print(password);
+
+                              dynamic db = FirebaseFirestore.instance;
+                              // Create a new user with a first and last name
+                              final user = <String, dynamic>{
+                                "name": name,
+                                "email": email,
+                                "phoneNo": phoneNo
+                              };
+                              DocumentReference doc =
+                                  await db.collection('users').add(user);
+                              print(doc.id);
+
+                              // ignore: use_build_context_synchronously
                               Navigator.push(
-                                  context,
-                                  // MaterialPageRoute(builder: (context) => const Home()));
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ModeSelect()));
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const ModeSelect(),
+                                ),
+                              );
                             }
-                            // Navigator.push(context, '/home');
                           },
                           child: const Text('Sign Up'),
                         ),
