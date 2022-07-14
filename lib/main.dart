@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:memoria/screens/authenticate/sign_in.dart';
+import 'package:memoria/screens/authenticate/sign_up.dart';
 import 'package:memoria/screens/home/faceRecog.dart';
 import 'package:memoria/screens/home/face_profile.dart';
 import 'package:memoria/screens/home/face_search.dart';
@@ -34,10 +36,12 @@ Future<void> main() async {
       fontFamily: 'Jost',
       primaryColor: const Color(0xFF3D96E8),
     ),
-    initialRoute: '/faces',
+    initialRoute: '/',
     routes: {
       '/': (context) => const Wrapper(),
       '/home': (context) => const Home(),
+      '/signup': (context) => const SignUp(),
+      '/signin': (context) => const SignIn(),
       '/geolocation': (context) => const geolocation(),
       '/snapshots': (context) => const Snapshots(),
       '/faces': (context) => const Faces(),

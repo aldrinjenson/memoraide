@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:memoria/screens/authenticate/mode_select.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+class SignIn extends StatefulWidget {
+  const SignIn({Key? key}) : super(key: key);
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<SignIn> createState() => _SignInState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignInState extends State<SignIn> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String name = "";
   String email = "";
   String password = "";
-  String phoneNo = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +23,7 @@ class _SignUpState extends State<SignUp> {
               height: 100,
             ),
             Text(
-              "Sign up to Memoria",
+              "Sign In",
               style: TextStyle(fontSize: 30),
             ),
             Form(
@@ -34,24 +33,6 @@ class _SignUpState extends State<SignUp> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: 'Enter Name',
-                      ),
-                      onChanged: (String val) {
-                        setState(() {
-                          name = val;
-                        });
-                      },
-                      validator: (String? value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            value.length < 2) {
-                          return 'Please enter a valid name';
-                        }
-                        return null;
-                      },
-                    ),
                     TextFormField(
                       decoration: const InputDecoration(
                         hintText: 'Enter Email',
@@ -64,20 +45,6 @@ class _SignUpState extends State<SignUp> {
                             value.isEmpty ||
                             !emailRegex.hasMatch(value)) {
                           return 'Please enter a valid email';
-                        }
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: 'Enter phone Number',
-                      ),
-                      validator: (String? value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            value.length != 10 ||
-                            num.tryParse(value) == null) {
-                          return 'Please enter a valid phone number';
                         }
                         return null;
                       },
@@ -114,7 +81,7 @@ class _SignUpState extends State<SignUp> {
                             }
                             // Navigator.push(context, '/home');
                           },
-                          child: const Text('Sign Up'),
+                          child: const Text('Sign In'),
                         ),
                       ),
                     ),
