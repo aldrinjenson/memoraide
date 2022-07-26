@@ -35,7 +35,7 @@ class _JournalState extends State<Journal> {
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              margin: EdgeInsets.symmetric(horizontal: 20),
               width: double.infinity,
               height: 80,
               decoration: BoxDecoration(
@@ -74,11 +74,11 @@ class _JournalState extends State<Journal> {
             SizedBox(
               height: 40,
             ),
-            Container(
-              margin: EdgeInsets.only(left: 20, bottom: 5),
+            Center(
               child: Text(
                 "PREVIOUS ENTRIES",
-                style: TextStyle(fontSize: 25),
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 22),
               ),
             ),
             SavedEntries(

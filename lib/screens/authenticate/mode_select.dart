@@ -23,15 +23,15 @@ class _ModeSelectState extends State<ModeSelect> {
         SizedBox(height: 20),
         ModeSelectCard(
           title: "Sole Care Taker",
-          subTitle: "This is you alone",
+          subTitle: "You want to use Memoria to take care of your needs.",
         ),
         ModeSelectCard(
           title: "Care Taker",
-          subTitle: "You have a patient and he is pretty paavam",
+          subTitle: "You want to use Memoria to help others.",
         ),
         ModeSelectCard(
           title: "Patient",
-          subTitle: "You're having memory issues",
+          subTitle: "You wish to start a new journey with Memoria.",
         ),
       ]),
     ));

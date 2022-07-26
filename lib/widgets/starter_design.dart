@@ -36,7 +36,7 @@ class StartingDesign extends StatelessWidget {
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 200,
+              height: 180,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/testdecoration.png"),
