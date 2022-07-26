@@ -33,16 +33,18 @@ class _FaceSearchState extends State<FaceSearch> {
           centerTitle: true,
           backgroundColor: Theme.of(context).primaryColor,
         ),
-        body: Center(
+        body: SingleChildScrollView(
           child: (Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text('Face search screen'),
               TextButton(
-                  onPressed: () {
-                    print('presed');
-                    takePic();
-                  },
-                  child: Text('Take photo')),
+                onPressed: () {
+                  print('presed');
+                  takePic();
+                },
+                child: Text('Take photo'),
+              ),
               WebView(
                 initialUrl: 'https://flutter.dev',
               )

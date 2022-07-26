@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memoria/widgets/starter_design.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -9,6 +10,7 @@ class Home extends StatefulWidget {
 
 Widget homeButton(BuildContext context, String g, String h) {
   return Container(
+    margin: EdgeInsets.symmetric(horizontal: 15),
     padding: EdgeInsets.all(15),
     width: double.infinity,
     height: 120,
@@ -43,42 +45,17 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Memoria'),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Stack(
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  Image(
-                    image: AssetImage("assets/oldppl.jpg"),
-                  ),
-                  Positioned(
-                    top: 40,
-                    left: 100,
-                    child: Text(
-                      "Good morning! \nWelcome, Nayana!",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              homeButton(context, "GEOLOCATION", "geolocation"),
-              homeButton(context, "FACES", "faces"),
-              homeButton(context, "SNAPSHOTS", "snapshots"),
-              homeButton(context, "JOURNAL", "journal"),
-            ],
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            StartingDesign(),
+            homeButton(context, "GEOLOCATION", "geolocation"),
+            homeButton(context, "FACES", "faces"),
+            homeButton(context, "SNAPSHOTS", "snapshots"),
+            homeButton(context, "JOURNAL", "journal"),
+          ],
         ),
       ),
     );

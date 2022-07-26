@@ -13,17 +13,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
       theme: ThemeData(
-        fontFamily: 'Jost',
-        primaryColor: const Color(0xFF3D96E8),
-      ),
+          fontFamily: 'Jost',
+          primaryColor: const Color.fromARGB(255, 9, 16, 21)),
       initialRoute: '/',
       routes: {
         '/': (context) => const Wrapper(),
