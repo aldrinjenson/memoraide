@@ -29,24 +29,30 @@ class _FaceSearchState extends State<FaceSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: (Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          StartingDesign("MEMORIA", "We are here for you", "home"),
-          Text('Face search screen'),
-          TextButton(
-            onPressed: () {
-              print('presed');
-              takePic();
-            },
-            child: Text('Take photo'),
-          ),
-          WebView(
-            initialUrl: 'https://flutter.dev',
-          )
-        ],
-      )),
-    ));
+      body: SingleChildScrollView(
+        child: (Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 40,
+            ),
+            Text(
+              'Face search screen',
+              textAlign: TextAlign.center,
+            ),
+            TextButton(
+              onPressed: () {
+                print('presed');
+                takePic();
+              },
+              child: Text('Take photo'),
+            ),
+            // WebView(
+            //   initialUrl: 'https://flutter.dev',
+            // ),
+          ],
+        )),
+      ),
+    );
   }
 }

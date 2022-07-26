@@ -98,13 +98,6 @@ class FaceButton extends StatelessWidget {
               image: AssetImage("assets/Sharat.png"),
               fit: BoxFit.fill,
             ),
-            Positioned(
-              top: 10,
-              left: 10,
-              child: Text(
-                "SHARAT",
-              ),
-            ),
           ],
         ),
         onPressed: () {

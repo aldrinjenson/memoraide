@@ -11,7 +11,6 @@ class Home extends StatefulWidget {
 Widget homeButton(BuildContext context, String g, String h) {
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-    padding: EdgeInsets.all(15),
     width: double.infinity,
     height: 120,
     decoration: BoxDecoration(
@@ -32,7 +31,6 @@ Widget homeButton(BuildContext context, String g, String h) {
     ),
     child: TextButton(
       style: TextButton.styleFrom(
-        padding: EdgeInsets.all(-6),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
         ),
