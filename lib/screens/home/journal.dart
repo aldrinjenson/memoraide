@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memoria/widgets/starter_design.dart';
 // import 'package:memoria/screens/home/home.dart';
 
 class Journal extends StatefulWidget {
@@ -12,15 +13,11 @@ class _JournalState extends State<Journal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('JOURNAL'),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         // ignore: prefer_const_literals_to_create_immutables
         children: [
+          StartingDesign("journal", "pen down your daily thoughts", "home"),
           SizedBox(
             height: 30,
           ),

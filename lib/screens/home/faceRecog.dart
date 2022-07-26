@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:memoria/screens/home/face_search.dart';
+import 'package:memoria/widgets/starter_design.dart';
 
 class Faces extends StatefulWidget {
   const Faces({Key? key}) : super(key: key);
@@ -16,23 +17,12 @@ class _FacesState extends State<Faces> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('PEOPLE'),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 30),
-            Text(
-              "MEET YOUR NEAR AND DEAR ONES!",
-              style: const TextStyle(
-                fontSize: 24,
-              ),
-            ),
-            SizedBox(height: 20),
+            StartingDesign(
+                "people", "hold your near and dear loved ones close", "home"),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

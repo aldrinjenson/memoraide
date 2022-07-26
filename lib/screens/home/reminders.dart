@@ -5,22 +5,22 @@ import 'package:memoria/screens/home/home.dart';
 import 'package:memoria/widgets/starter_design.dart';
 // import 'package:memoria/screens/home/home.dart';
 
-class Snapshots extends StatefulWidget {
-  const Snapshots({Key? key}) : super(key: key);
+class Reminders extends StatefulWidget {
+  const Reminders({Key? key}) : super(key: key);
 
   @override
-  State<Snapshots> createState() => _SnapshotsState();
+  State<Reminders> createState() => _RemindersState();
 }
 
-class _SnapshotsState extends State<Snapshots> {
+class _RemindersState extends State<Reminders> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          StartingDesign("snapshots",
-              "add memories that you would like to capture forever", "home"),
+          StartingDesign("reminders", "don't forget to take all your medicines on time!", "home"),
           homeButton(context, "HOME", "home"),
         ],
       ),

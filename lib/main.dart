@@ -21,9 +21,8 @@ Future<void> main() async {
 
   runApp(
     MaterialApp(
-      theme: ThemeData(
-          fontFamily: 'Jost',
-          primaryColor: const Color.fromARGB(255, 9, 16, 21)),
+      theme:
+          ThemeData(fontFamily: 'Jost', primaryColor: const Color(0XFF0979FD)),
       initialRoute: '/',
       routes: {
         '/': (context) => const Wrapper(),

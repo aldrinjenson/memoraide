@@ -10,13 +10,29 @@ class Home extends StatefulWidget {
 
 Widget homeButton(BuildContext context, String g, String h) {
   return Container(
-    margin: EdgeInsets.symmetric(horizontal: 15),
+    margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
     padding: EdgeInsets.all(15),
     width: double.infinity,
     height: 120,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      gradient: LinearGradient(
+        colors: [Color(0xFF0979FD), Color(0xFF5CA7FF)],
+        begin: Alignment.bottomLeft,
+        end: Alignment.topRight,
+      ),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black,
+          blurRadius: 30,
+          spreadRadius: -15,
+          offset: Offset(4, 8), // Shadow position
+        ),
+      ],
+    ),
     child: TextButton(
       style: TextButton.styleFrom(
-        backgroundColor: Theme.of(context).primaryColor,
+        padding: EdgeInsets.all(-6),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
         ),
@@ -32,9 +48,8 @@ Widget homeButton(BuildContext context, String g, String h) {
         g,
         textAlign: TextAlign.center,
         style: TextStyle(
-          fontSize: 16,
+          fontSize: 20,
           color: Colors.white,
-          fontFamily: 'Jost',
         ),
       ),
     ),
@@ -50,11 +65,14 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            StartingDesign(),
+            StartingDesign("MEMORIA", "We are here for you", "homes"),
             homeButton(context, "GEOLOCATION", "geolocation"),
             homeButton(context, "FACES", "faces"),
             homeButton(context, "SNAPSHOTS", "snapshots"),
             homeButton(context, "JOURNAL", "journal"),
+            SizedBox(
+              height: 30,
+            )
           ],
         ),
       ),
