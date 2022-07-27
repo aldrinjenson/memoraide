@@ -45,7 +45,7 @@ class _JournalState extends State<Journal> {
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
                 ),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Colors.black,
                     blurRadius: 30,
@@ -129,7 +129,7 @@ class SavedEntries extends StatelessWidget {
           text: "24 July 2021\n\n",
           style: TextStyle(
             fontSize: 20,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w500,
           ),
           children: <InlineSpan>[
             TextSpan(

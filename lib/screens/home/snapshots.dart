@@ -16,12 +16,88 @@ class _SnapshotsState extends State<Snapshots> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            StartingDesign("snapshots",
+                "add memories that you would like to capture forever", "home"),
+            Snapshot("testsnap1"),
+            Snapshot("testsnap2"),
+            Snapshot("testsnap3"),
+            Snapshot("testsnap1"),
+            SizedBox(
+              height: 30,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Snapshot extends StatelessWidget {
+  late String SnapName;
+  Snapshot(
+    String SN, {
+    Key? key,
+  }) : super(key: key) {
+    SnapName = SN;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 20),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromARGB(255, 44, 44, 44),
+            blurRadius: 30,
+            spreadRadius: -35,
+            offset: Offset(4, 8), // Shadow position
+          ),
+        ],
+      ),
+      child: Column(
         children: [
-          StartingDesign("snapshots",
-              "add memories that you would like to capture forever", "home"),
-          homeButton(context, "HOME", "home"),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            width: double.infinity,
+            height: 250,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+              image: DecorationImage(
+                image: AssetImage("assets/$SnapName.png"),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
+              color: Colors.white,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "This is $SnapName",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
+                  "24 JULY",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

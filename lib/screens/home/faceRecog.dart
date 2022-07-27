@@ -92,13 +92,13 @@ class FaceButton extends StatelessWidget {
       width: 100,
       height: 100,
       child: ElevatedButton(
-        child: Stack(
-          children: const [
-            Image(
-              image: AssetImage("assets/Sharat.png"),
-              fit: BoxFit.fill,
-            ),
-          ],
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(EdgeInsets.all(0)),
+          
+        ),
+        child: Image(
+          image: AssetImage("assets/Sharat.png"),
+          fit: BoxFit.fill,
         ),
         onPressed: () {
           Navigator.pushNamed(context, '/faceProfile');

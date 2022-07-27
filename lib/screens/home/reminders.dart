@@ -21,7 +21,7 @@ class _RemindersState extends State<Reminders> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           StartingDesign("reminders", "don't forget to take all your medicines on time!", "home"),
-          homeButton(context, "HOME", "home"),
+          homeButton(context, "HOME", "home","testsnap1",),
         ],
       ),
     );

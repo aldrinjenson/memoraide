@@ -17,7 +17,7 @@ class _geolocationState extends State<geolocation> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           StartingDesign("places", "check out where you are at", "home"),
-          homeButton(context, "HOME", "home"),
+          homeButton(context, "HOME", "home","testsnap1",),
         ],
       ),
     );

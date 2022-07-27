@@ -18,7 +18,12 @@ class _FacesState extends State<FaceProfile> {
           // Image(
           //   image: AssetImage("sharat.png"),
           // ),
-          homeButton(context, "HOME", "home"),
+          homeButton(
+            context,
+            "HOME",
+            "home",
+            "testsnap1",
+          ),
         ],
       ),
     );
