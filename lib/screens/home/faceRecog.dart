@@ -87,23 +87,58 @@ class FaceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(5),
-      width: 100,
-      height: 100,
-      child: ElevatedButton(
-        style: ButtonStyle(
-          padding: MaterialStateProperty.all(EdgeInsets.all(0)),
-          
+    return Stack(
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black,
+                blurRadius: 30,
+                spreadRadius: -15,
+                offset: Offset(4, 8), // Shadow position
+              ),
+            ],
+          ),
         ),
-        child: Image(
-          image: AssetImage("assets/Sharat.png"),
-          fit: BoxFit.fill,
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              image: DecorationImage(
+                image: AssetImage(
+                  "assets/Sharat.png",
+                ),
+                opacity: 0.9,
+                fit: BoxFit.cover,
+              )),
+          child: TextButton(
+            style: TextButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(6),
+              ),
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, '/faceProfile');
+            },
+            child: Text(
+              "ButtonName",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.white,
+              ),
+            ),
+          ),
         ),
-        onPressed: () {
-          Navigator.pushNamed(context, '/faceProfile');
-        },
-      ),
+      ],
     );
   }
 }
