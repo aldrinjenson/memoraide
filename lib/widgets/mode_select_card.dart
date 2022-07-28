@@ -18,11 +18,11 @@ class ModeSelectCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         gradient: LinearGradient(
-          colors: [Color(0xFF0979FD), Color(0xFF5CA7FF)],
+          colors: const [Color(0xFF0979FD), Color(0xFF5CA7FF)],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         ),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black,
             blurRadius: 30,

@@ -25,7 +25,10 @@ class _JournalState extends State<Journal> {
               width: 450,
               padding: EdgeInsets.all(15),
               margin: EdgeInsets.all(20),
-              color: Colors.grey[100],
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 210, 208, 208),
+                borderRadius: BorderRadius.circular(10),
+              ),
               child: TextField(
                 keyboardType: TextInputType.multiline,
                 minLines: 15,

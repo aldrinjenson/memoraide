@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:memoria/widgets/starter_design.dart';
 
@@ -88,6 +90,12 @@ class _HomeState extends State<Home> {
               "GEOLOCATION",
               "geolocation",
               "testsnap1",
+            ),
+            homeButton(
+              context,
+              "REMINDERS",
+              "reminders",
+              "testsnap3",
             ),
             homeButton(
               context,

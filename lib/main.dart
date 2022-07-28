@@ -7,6 +7,7 @@ import 'package:memoria/screens/home/face_search.dart';
 import 'package:memoria/screens/home/geolocation.dart';
 import 'package:memoria/screens/home/home.dart';
 import 'package:memoria/screens/home/journal.dart';
+import 'package:memoria/screens/home/reminders.dart';
 import 'package:memoria/screens/home/snapshots.dart';
 import 'package:memoria/screens/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -27,11 +28,12 @@ Future<void> main() async {
       routes: {
         '/': (context) => const Wrapper(),
         '/home': (context) => const Home(),
+        '/reminders': (context) => const Reminders(),
         '/signup': (context) => const SignUp(),
         '/signin': (context) => const SignIn(),
-        '/geolocation': (context) => const geolocation(),
+        '/geolocation': (context) => const Geolocation(),
         '/snapshots': (context) => const Snapshots(),
-        '/faces': (context) => const Faces(),
+        '/faces': (context) => Faces(),
         '/facesearch': (context) => const FaceSearch(),
         '/faceProfile': (context) => const FaceProfile(),
         '/journal': (context) => const Journal(),
