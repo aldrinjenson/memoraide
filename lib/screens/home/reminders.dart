@@ -146,8 +146,8 @@ class Medicine extends StatelessWidget {
                 begin: Alignment.bottomLeft,
                 end: Alignment.topRight,
               ),
-              boxShadow: [
-                BoxShadow(
+              boxShadow: const[
+                 BoxShadow(
                   color: Color.fromARGB(255, 44, 44, 44),
                   blurRadius: 30,
                   spreadRadius: -20,
@@ -156,7 +156,7 @@ class Medicine extends StatelessWidget {
               ],
               borderRadius: BorderRadius.circular(5),
             ),
-            child: TextButton(
+            child: TextButton(    
               child: Text(
                 "PARACETAMOL(TAKEN)",
                 textAlign: TextAlign.center,
