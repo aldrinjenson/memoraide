@@ -32,7 +32,7 @@ class _GeolocationState extends State<Geolocation> {
                   width: MediaQuery.of(context).size.width,
                   height: 600,
                   child: Image(
-                    image: AssetImage("assets/maps.png"),
+                    image: AssetImage("assets/Maps.png"),
                   ),
                 ),
                 Positioned(

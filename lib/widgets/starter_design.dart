@@ -24,7 +24,7 @@ class StartingDesign extends StatelessWidget {
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width,
-              height: Return == "homes" ? 200 : 190,
+              height: Return == "homes" ? 220 : 230,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/testdecoration.png"),
@@ -33,7 +33,7 @@ class StartingDesign extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: Return == "homes" ? 25 : 15,
+              top: Return == "homes" ? 45 : 35,
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Align(

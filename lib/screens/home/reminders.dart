@@ -22,43 +22,46 @@ class _RemindersState extends State<Reminders> {
           children: [
             StartingDesign("reminders",
                 "don't forget to take all your medicines on time!", "home"),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: 250,
-                  height: 200,
-                  child: Image(
-                    image: AssetImage("assets/medicines.png"),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    width: 150,
+                    height: 100,
+                    child: Image(
+                      image: AssetImage("assets/medicines.png"),
+                    ),
                   ),
-                ),
-                Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(8),
-                      width: 200,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        gradient: LinearGradient(
-                          colors: [Color(0xFF0979FD), Color(0xFF5CA7FF)],
-                          begin: Alignment.bottomLeft,
-                          end: Alignment.topRight,
+                  Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(8),
+                        width: 170,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          gradient: LinearGradient(
+                            colors: [Color(0xFF0979FD), Color(0xFF5CA7FF)],
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                          ),
+                        ),
+                        child: Text(
+                          "3 more medicines",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       ),
-                      child: Text(
-                        "3 more medicines",
+                      Text(
+                        "to take for today!",
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: TextStyle(fontSize: 18),
                       ),
-                    ),
-                    Text(
-                      "to take for today!",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                )
-              ],
+                    ],
+                  )
+                ],
+              ),
             ),
             SizedBox(height: 20),
             Medicine(1, "MORNING", "AFTER FOOD"),
@@ -102,7 +105,7 @@ class Medicine extends StatelessWidget {
               Text(
                 "MEDICINE $MedicineNumber",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                 ),
               ),
               Container(
@@ -116,7 +119,7 @@ class Medicine extends StatelessWidget {
                   MedicineTime,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 14,
                   ),
                 ),
               ),
@@ -130,7 +133,7 @@ class Medicine extends StatelessWidget {
                   MedicineMealTime,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 14,
                   ),
                 ),
               ),
