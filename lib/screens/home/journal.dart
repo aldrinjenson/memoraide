@@ -22,11 +22,11 @@ class _JournalState extends State<Journal> {
                 "journal", "pen down your daily thoughts at any time", "home"),
             Container(
               height: 200,
-              width: 450,
+              width: double.infinity,
               padding: EdgeInsets.all(15),
               margin: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 210, 208, 208),
+                color: Color.fromARGB(255, 234, 232, 232),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: TextField(

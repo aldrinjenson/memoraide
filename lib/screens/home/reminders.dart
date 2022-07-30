@@ -137,17 +137,17 @@ class Medicine extends StatelessWidget {
             ],
           ),
           Container(
-            padding: EdgeInsets.symmetric(vertical: 15),
             margin: EdgeInsets.only(top: 10),
             width: MediaQuery.of(context).size.width,
+            height: 80,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [Color(0xFF0979FD), Color(0xFF5CA7FF)],
                 begin: Alignment.bottomLeft,
                 end: Alignment.topRight,
               ),
-              boxShadow: const[
-                 BoxShadow(
+              boxShadow: const [
+                BoxShadow(
                   color: Color.fromARGB(255, 44, 44, 44),
                   blurRadius: 30,
                   spreadRadius: -20,
@@ -156,7 +156,7 @@ class Medicine extends StatelessWidget {
               ],
               borderRadius: BorderRadius.circular(5),
             ),
-            child: TextButton(    
+            child: TextButton(
               child: Text(
                 "PARACETAMOL(TAKEN)",
                 textAlign: TextAlign.center,

@@ -20,56 +20,51 @@ class StartingDesign extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: 50,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 37, 136, 249),
-                Color.fromARGB(255, 110, 176, 250)
-              ],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-            ),
-          ),
-        ),
         Stack(
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 180,
+              height: Return == "homes" ? 200 : 190,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/testdecoration.png"),
                   fit: BoxFit.fill,
                 ),
               ),
-              child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Container(
+            ),
+            Positioned(
+              top: Return == "homes" ? 25 : 15,
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
                     width: 255,
                     child: Text.rich(
                       textAlign: TextAlign.center,
                       TextSpan(
-                          text: DesignText1,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 35,
-                          ),
-                          children: <InlineSpan>[
-                            TextSpan(
-                              text: "\n" + DesignText2,
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            )
-                          ]),
+                        text: DesignText1,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 35,
+                        ),
+                        children: <InlineSpan>[
+                          TextSpan(
+                            text: "\n" + DesignText2,
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  )),
+                  ),
+                ),
+              ),
             ),
-            Align(
-              alignment: Alignment.topLeft,
+            Positioned(
+              top: 25,
+              left: 10,
               child: Container(
                 width: 42,
                 height: 42,
