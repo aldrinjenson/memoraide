@@ -47,15 +47,16 @@ class _GeolocationState extends State<Geolocation> {
                   bottom: 0,
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 100,
+                    height: 30,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: AssetImage(
-                          "assets/mapshape.png",
-                        ),
-                        fit: BoxFit.cover,
-                      ),
+                      color: Colors.white,
+                      // image: DecorationImage(
+                      //   image: AssetImage(
+                      //     "frame.png",
+                      //   ),
+                      //   fit: BoxFit.fill,
+                      // ),
                     ),
                   ),
                 ),
