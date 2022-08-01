@@ -137,7 +137,7 @@ class SavedPlace extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
       ),
       child: Text(
-        "$PlaceName" + "'S HOME",
+        "$PlaceName'S HOME",
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 18,

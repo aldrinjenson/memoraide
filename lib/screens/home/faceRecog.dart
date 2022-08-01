@@ -1,6 +1,6 @@
 // ignore: duplicate_ignore
 // ignore: file_names
-// ignore_for_file: file_names
+// ignore_for_file: file_names, prefer_const_constructors_in_immutables, must_be_immutable, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:memoria/screens/home/face_search.dart';

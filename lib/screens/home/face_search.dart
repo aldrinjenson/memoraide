@@ -1,6 +1,5 @@
 // import 'package:camera/camera.dart';
 import 'dart:io';
-import 'package:memoria/widgets/starter_design.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
 

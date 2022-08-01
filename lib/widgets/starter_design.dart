@@ -50,7 +50,7 @@ class StartingDesign extends StatelessWidget {
                         ),
                         children: <InlineSpan>[
                           TextSpan(
-                            text: "\n" + DesignText2,
+                            text: "\n$DesignText2",
                             style: TextStyle(
                               fontSize: 20,
                             ),

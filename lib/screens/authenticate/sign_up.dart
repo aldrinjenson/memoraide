@@ -128,16 +128,16 @@ class _SignUpState extends State<SignUp> {
                             print(phoneNo);
                             print(password);
 
-                            dynamic db = FirebaseFirestore.instance;
+                            // dynamic db = FirebaseFirestore.instance;
                             // Create a new user with a first and last name
-                            final user = <String, dynamic>{
-                              "name": name,
-                              "email": email,
-                              "phoneNo": phoneNo
-                            };
-                            DocumentReference doc =
-                                await db.collection('users').add(user);
-                            print(doc.id);
+                            // final user = <String, dynamic>{
+                            //   "name": name,
+                            //   "email": email,
+                            //   "phoneNo": phoneNo
+                            // };
+                            // DocumentReference doc =
+                            //     await db.collection('users').add(user);
+                            // print(doc.id);
 
                             // ignore: use_build_context_synchronously
                             Navigator.push(
