@@ -1,4 +1,7 @@
+import 'dart:io';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:memoria/screens/authenticate/sign_in.dart';
 import 'package:memoria/screens/authenticate/sign_up.dart';
 import 'package:memoria/screens/home/faceRecog.dart';
@@ -15,6 +18,12 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Permission.camera.request();
+  await Permission.microphone.request();
+
+  if (Platform.isAndroid) {
+    await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
+  }
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -34,7 +43,7 @@ Future<void> main() async {
         '/geolocation': (context) => const Geolocation(),
         '/snapshots': (context) => const Snapshots(),
         '/faces': (context) => Faces(),
-        '/facesearch': (context) => const FaceSearch(),
+        '/facesearch': (context) => FaceSearch(),
         '/faceProfile': (context) => const FaceProfile(),
         '/journal': (context) => const Journal(),
       },

@@ -55,7 +55,7 @@ class _FacesState extends State<Faces> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const FaceSearch()));
+                              builder: (context) => FaceSearch()));
                     },
                   ),
                 ),
