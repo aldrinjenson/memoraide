@@ -1,8 +1,14 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:memoria/screens/home/home.dart';
+import 'package:flutter_map/flutter_map.dart'; // Suitable for most situations
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
+// ignore: depend_on_referenced_packages
+import 'package:latlong2/latlong.dart';
+import 'package:path/path.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
+// ignore: depend_on_referenced_packages
+// import 'package:latlong2/latlong.dart' as latLng;
+// import 'package:latlong2/latlong.dart' as latLng;
 
 import 'package:url_launcher/url_launcher.dart';
 import 'package:memoria/widgets/starter_design.dart';
@@ -16,25 +22,17 @@ class Geolocation extends StatefulWidget {
 }
 
 class _GeolocationState extends State<Geolocation> {
-  // late GoogleMapController mapController;
-
-  // final LatLng _center = const LatLng(45.521563, -122.677433);
-
-  // void _onMapCreated(GoogleMapController controller) {
-  //   mapController = controller;
-  // }
+  late LocationData currentCoordinates;
   Future<void> _launchUrl(Uri url) async {
     if (!await launchUrl(url)) {
       throw 'Could not launch $url';
     }
   }
 
-  sosLocation() async {
+  getLocation() async {
     Location location = Location();
-
     bool serviceEnabled;
     PermissionStatus permissionGranted;
-    LocationData locationData;
 
     serviceEnabled = await location.serviceEnabled();
     if (!serviceEnabled) {
@@ -52,20 +50,29 @@ class _GeolocationState extends State<Geolocation> {
       }
     }
 
-    locationData = await location.getLocation();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text("Getting current location"),
-    ));
+    LocationData currLocation = await location.getLocation();
+    setState(() {
+      currentCoordinates = currLocation;
+    });
+  }
+
+  sosLocation() async {
     final Uri smsLaunchUri = Uri(
       scheme: 'sms',
       path: '919895549782',
       queryParameters: <String, String>{
         // 'body': Uri.encodeComponent('Example Subject & Symbols are allowed!'),
         'body':
-            "Help, I'm in trouble. Reach me at location: 'https://maps.google.com/?q=${locationData.latitude},${locationData.longitude}"
+            "Help, I'm in trouble. Reach me at location: 'https://maps.google.com/?q=${currentCoordinates.latitude},${currentCoordinates.longitude}"
       },
     );
     _launchUrl(smsLaunchUri);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getLocation();
   }
 
   @override
@@ -80,9 +87,28 @@ class _GeolocationState extends State<Geolocation> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 600,
-                  child: Image(
-                    image: AssetImage("assets/Maps.png"),
+                  child: FlutterMap(
+                    options: MapOptions(
+                      zoom: 10.2,
+                      center: LatLng(10.026098218386911, 76.32633486141765),
+                    ),
+                    layers: [
+                      TileLayerOptions(
+                        urlTemplate:
+                            "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                        userAgentPackageName: 'com.memoria.app',
+                      ),
+                    ],
+                    nonRotatedChildren: [
+                      AttributionWidget.defaultWidget(
+                        source: 'OpenStreetMap contributors',
+                        onSourceTapped: null,
+                      ),
+                    ],
                   ),
+                  // Image(
+                  //   image: AssetImage("assets/Maps.png"),
+                  // ),
                 ),
                 Positioned(
                   top: 0,
@@ -152,7 +178,6 @@ class _GeolocationState extends State<Geolocation> {
               ),
             ),
             SavedPlace("SHARAT"),
-            SavedPlace("SRK"),
             SavedPlace("ALDRIN"),
             SavedPlace("NAYANA"),
             SavedPlace("ANJALI"),
