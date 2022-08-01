@@ -1,7 +1,6 @@
 // ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
 import 'package:memoria/widgets/starter_design.dart';
-import 'package:modals/modals.dart';
 
 class Reminders extends StatefulWidget {
   const Reminders({Key? key}) : super(key: key);
@@ -64,17 +63,7 @@ class _RemindersState extends State<Reminders> {
             SizedBox(height: 20),
             Center(
                 child: ElevatedButton(
-                    onPressed: () {
-                      showModal(ModalEntry.aligned(context,
-                          tag: 'containerModal',
-                          alignment: Alignment.center,
-                          child: Container(
-                            color: Colors.red,
-                            width: 50,
-                            height: 50,
-                          )));
-                    },
-                    child: Text('Add new Medicine'))),
+                    onPressed: () {}, child: Text('Add new Medicine'))),
             Medicine(1, "MORNING", "AFTER FOOD"),
             Medicine(2, "AFTERNOON", "BEFORE FOOD"),
             Medicine(3, "EVENING", "BEFORE FOOD"),

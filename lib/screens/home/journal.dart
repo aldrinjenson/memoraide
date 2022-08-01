@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, must_be_immutable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -18,34 +18,12 @@ class _JournalState extends State<Journal> {
   dynamic journalSnapShot;
 
   Future<void> getData() async {
-    print('inside here');
     var collection = FirebaseFirestore.instance.collection('journals');
     var querySnapshots = await collection.get();
-
-    List journalItems = [];
-
     var snapshotData = querySnapshots.docs.map((e) => e.data());
-    // for (var element in snapshotData) {
-    //   journalItems.add(element);
-    // }
-    print(snapshotData);
     setState(() {
       journalSnapShot = snapshotData.toList();
     });
-    // Map<String, dynamic> entries;
-    // for (var queryDocumentSnapshot in querySnapshot.docs) {
-    //   Map<String, dynamic> entry = {
-    //     'addedTime': queryDocumentSnapshot.data()['addedTime'],
-    //     'journalEntry': queryDocumentSnapshot.data()['entry']
-    //   };
-    //   print(entry);
-    // }
-    // setState(() {
-    //   firebaseData(querySnapshot);
-    // });
-    // for (var doc in event.docs) {
-    //   print("${doc.id} => ${doc.data()}");
-    // }
   }
 
   @override
@@ -63,13 +41,10 @@ class _JournalState extends State<Journal> {
         child: CircularProgressIndicator(),
       );
     }
-    print(journalSnapShot);
-    print(journalSnapShot[0]);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          // ignore: prefer_const_literals_to_create_immutables
           children: [
             StartingDesign(
                 "journal", "pen down your daily thoughts at any time", "home"),
@@ -140,6 +115,7 @@ class _JournalState extends State<Journal> {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text("Journal entry saved!"),
                     ));
+                    getData();
                     FocusScopeNode currentFocus = FocusScope.of(context);
                     if (!currentFocus.hasPrimaryFocus &&
                         currentFocus.focusedChild != null) {
