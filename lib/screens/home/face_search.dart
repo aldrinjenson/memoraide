@@ -71,7 +71,7 @@ class _FaceSearchState extends State<FaceSearch> {
             onSubmitted: (value) {
               var url = Uri.parse(value);
               if (url.scheme.isEmpty) {
-                url = Uri.parse("https://www.google.com/search?q=" + value);
+                url = Uri.parse("https://www.google.com/search?q=$value");
               }
               webViewController?.loadUrl(urlRequest: URLRequest(url: url));
             },

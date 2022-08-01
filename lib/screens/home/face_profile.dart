@@ -18,7 +18,7 @@ class _FacesState extends State<FaceProfile> {
         children: [
           StartingDesign("Sharat", "your son", "home"),
           Image(
-            image: AssetImage("assets/sharat.png"),
+            image: AssetImage("assets/Sharat.png"),
           ),
           homeButton(
             context,
