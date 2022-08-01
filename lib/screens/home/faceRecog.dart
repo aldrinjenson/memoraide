@@ -3,6 +3,7 @@
 // ignore_for_file: file_names, prefer_const_constructors_in_immutables, must_be_immutable, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:memoria/screens/home/face_profile.dart';
 import 'package:memoria/screens/home/face_search.dart';
 import 'package:memoria/widgets/starter_design.dart';
 
@@ -165,7 +166,17 @@ class FaceButton extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/faceProfile');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  // builder: (context) => const ModeSelect(),
+                  builder: (context) => FaceProfile(pName: personName),
+                ),
+              );
+              // Navigator.pushNamed(
+              //   context,
+              //   '/faceProfile',
+              // );
             },
             child: Text(
               ".",

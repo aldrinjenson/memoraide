@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:camera/camera.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -21,8 +20,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Permission.camera.request();
   await Permission.microphone.request();
-  var cameras = await availableCameras();
-  print(cameras);
 
   if (Platform.isAndroid) {
     await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
@@ -47,7 +44,7 @@ Future<void> main() async {
         '/snapshots': (context) => const Snapshots(),
         '/faces': (context) => Faces(),
         '/facesearch': (context) => FaceSearch(),
-        '/faceProfile': (context) => const FaceProfile(),
+        '/faceProfile': (context) => const FaceProfile(pName: 'Sharat'),
         '/journal': (context) => const Journal(),
       },
     ),

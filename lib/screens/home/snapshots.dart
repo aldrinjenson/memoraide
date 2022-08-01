@@ -1,6 +1,8 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, use_build_context_synchronously
 
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:memoria/screens/cameraScreens/camera_screen.dart';
 import 'package:memoria/screens/home/home.dart';
 import 'package:memoria/widgets/starter_design.dart';
 // import 'package:memoria/screens/home/home.dart';
@@ -22,6 +24,22 @@ class _SnapshotsState extends State<Snapshots> {
           children: [
             StartingDesign("snapshots",
                 "add memories that you would like to capture forever", "home"),
+            ElevatedButton(
+                onPressed: () async {
+                  final cameras = await availableCameras();
+                  final firstCamera = cameras.first;
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TakePictureScreen(
+                        camera: firstCamera,
+                      ),
+                    ),
+                  );
+                },
+                child: Text('+')),
+            SizedBox(height: 20),
             Snapshot("testsnap1"),
             Snapshot("testsnap2"),
             Snapshot("testsnap3"),
