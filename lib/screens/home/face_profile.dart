@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:memoria/screens/home/home.dart';
+import 'package:memoria/widgets/starter_design.dart';
 
 class FaceProfile extends StatefulWidget {
   const FaceProfile({Key? key}) : super(key: key);
@@ -15,9 +16,10 @@ class _FacesState extends State<FaceProfile> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Image(
-          //   image: AssetImage("sharat.png"),
-          // ),
+          StartingDesign("Sharat", "your son", "home"),
+          Image(
+            image: AssetImage("assets/sharat.png"),
+          ),
           homeButton(
             context,
             "HOME",

@@ -61,7 +61,7 @@ class _FaceSearchState extends State<FaceSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Official InAppWebView website")),
+        appBar: AppBar(title: Text("Recognize your loved ones!11")),
         body: SafeArea(
             child: Column(children: <Widget>[
           TextField(

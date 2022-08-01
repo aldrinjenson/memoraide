@@ -92,8 +92,8 @@ class _JournalState extends State<Journal> {
                 keyboardType: TextInputType.multiline,
                 minLines: 15,
                 maxLines: null, // when user presses enter it will adapt to it
-                decoration: InputDecoration.collapsed(
-                    hintText: 'Enter your thoughts bro!'),
+                decoration:
+                    InputDecoration.collapsed(hintText: 'Enter your thoughts!'),
               ),
             ),
             Container(
@@ -173,15 +173,12 @@ class _JournalState extends State<Journal> {
                 style: TextStyle(fontSize: 22),
               ),
             ),
-            Container(
-              height: 150,
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: journalSnapShot.length,
-                itemBuilder: ((context, index) =>
-                    SavedEntries(journalSnapShot[index]['entry'])),
-              ),
+            ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: journalSnapShot.length,
+              itemBuilder: ((context, index) =>
+                  SavedEntries(journalSnapShot[index]['entry'])),
             ),
 
             // SavedEntries(

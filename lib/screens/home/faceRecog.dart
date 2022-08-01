@@ -114,45 +114,57 @@ class FaceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-      width: 100,
-      height: 100,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        image: DecorationImage(
-          image: AssetImage(
-            "assets/$PersonName.png",
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(
+              image: AssetImage(
+                "assets/$PersonName.png",
+              ),
+              fit: BoxFit.cover,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black,
+                blurRadius: 30,
+                spreadRadius: -18,
+                offset: Offset(4, 8), // Shadow position
+              ),
+            ],
           ),
-          fit: BoxFit.cover,
+          child: TextButton(
+            style: TextButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(6),
+              ),
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, '/faceProfile');
+            },
+            child: Text(
+              ".",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.transparent,
+              ),
+            ),
+          ),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black,
-            blurRadius: 30,
-            spreadRadius: -18,
-            offset: Offset(4, 8), // Shadow position
-          ),
-        ],
-      ),
-      child: TextButton(
-        style: TextButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6),
-          ),
-        ),
-        onPressed: () {
-          Navigator.pushNamed(context, '/faceProfile');
-        },
-        child: Text(
-          ".",
+        Text(
+          PersonName,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 24,
-            color: Colors.transparent,
+            fontSize: 12,
+            color: Colors.black,
           ),
-        ),
-      ),
+        )
+      ],
     );
   }
 }
