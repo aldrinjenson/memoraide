@@ -21,11 +21,6 @@ List<Map<String, String>> allPeople = [
   {'name': 'Adithya', 'imgUrl': 'assets/Adithya.png'},
   {'name': 'Nayana', 'imgUrl': 'assets/Nayana.png'},
   {'name': 'Krishnendhu', 'imgUrl': 'assets/Krishnendhu.png'},
-  {'name': 'Sharat', 'imgUrl': 'assets/Sharat.png'},
-  {'name': 'Nikita', 'imgUrl': 'assets/Nikita.png'},
-  {'name': 'Pranav', 'imgUrl': 'assets/Pranav.png'},
-  {'name': 'Adithya', 'imgUrl': 'assets/Adithya.png'},
-  {'name': 'Nayana', 'imgUrl': 'assets/Nayana.png'},
 ];
 
 class _FacesState extends State<Faces> {
