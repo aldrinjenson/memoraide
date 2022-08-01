@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:memoria/screens/authenticate/mode_select.dart';
+import 'package:memoria/screens/home/home.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -143,7 +144,8 @@ class _SignUpState extends State<SignUp> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ModeSelect(),
+                                // builder: (context) => const ModeSelect(),
+                                builder: (context) => const Home(),
                               ),
                             );
                           }

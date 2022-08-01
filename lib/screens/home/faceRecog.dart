@@ -13,7 +13,22 @@ class Faces extends StatefulWidget {
   State<Faces> createState() => _FacesState();
 }
 
+List<Map<String, String>> allPeople = [
+  {'name': 'Sharat', 'imgUrl': 'assets/Sharat.png'},
+  {'name': 'Nikita', 'imgUrl': 'assets/Nikita.png'},
+  {'name': 'Pranav', 'imgUrl': 'assets/Pranav.png'},
+  {'name': 'Adithya', 'imgUrl': 'assets/Adithya.png'},
+  {'name': 'Nayana', 'imgUrl': 'assets/Nayana.png'},
+  {'name': 'Krishnendhu', 'imgUrl': 'assets/Krishnendhu.png'},
+  {'name': 'Sharat', 'imgUrl': 'assets/Sharat.png'},
+  {'name': 'Nikita', 'imgUrl': 'assets/Nikita.png'},
+  {'name': 'Pranav', 'imgUrl': 'assets/Pranav.png'},
+  {'name': 'Adithya', 'imgUrl': 'assets/Adithya.png'},
+  {'name': 'Nayana', 'imgUrl': 'assets/Nayana.png'},
+];
+
 class _FacesState extends State<Faces> {
+  List<Map<String, String>> people = allPeople;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +52,17 @@ class _FacesState extends State<Faces> {
                 maxLines: 1, // when user presses enter it will adapt to it
                 decoration:
                     InputDecoration.collapsed(hintText: 'Search for people..'),
+                onChanged: (String searchVal) {
+                  print(searchVal);
+                  Iterable<Map<String, String>> filtered = allPeople.where(
+                      (el) => el.values
+                          .toList()[0]
+                          .toLowerCase()
+                          .contains(searchVal));
+                  setState(() {
+                    people = filtered.toList();
+                  });
+                },
               ),
             ),
             Row(
@@ -59,42 +85,36 @@ class _FacesState extends State<Faces> {
                     },
                   ),
                 ),
-                FaceButton("Sharat"),
-                FaceButton("Nayana"),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FaceButton("Nikita"),
-                FaceButton("Adithya"),
-                FaceButton("Pranav"),
-              ],
+            GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 3 / 2, // width/height ratio
+                mainAxisSpacing: 0, // between rows
+                crossAxisSpacing: 0, // between columns
+              ),
+              shrinkWrap: true,
+              itemBuilder: (BuildContext ctx, index) {
+                return FaceButton(people[index].values.toList()[0],
+                    people[index].values.toList()[1]);
+              },
+              itemCount: people.length,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FaceButton("Nayana"),
-                FaceButton("Sharat"),
-                FaceButton("Nikita"),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FaceButton("Pranav"),
-                FaceButton("Adithya"),
-                FaceButton("Sharat"),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FaceButton("Nayana"),
-                FaceButton("Sharat"),
-                FaceButton("Nikita"),
-              ],
-            ),
+            // Wrap(
+            //   runSpacing: 5.0,
+            //   spacing: 5.0,
+            //   children: [
+            //     ListView.builder(
+            //       scrollDirection: Axis.vertical,
+            //       shrinkWrap: true,
+            //       itemCount: people.length,
+            //       itemBuilder: (context, index) => FaceButton(
+            //           people[index].values.toList()[0],
+            //           people[index].values.toList()[1]),
+            //     ),
+            //   ],
+            // ),
             SizedBox(height: 30),
           ],
         ),
@@ -104,12 +124,12 @@ class _FacesState extends State<Faces> {
 }
 
 class FaceButton extends StatelessWidget {
-  late String PersonName;
-  FaceButton(
-    String PN, {
-    Key? key,
-  }) : super(key: key) {
-    PersonName = PN;
+  late String personName;
+  late String personImgUrl;
+
+  FaceButton(String pName, String imgUrl, {Key? key}) : super(key: key) {
+    personName = pName;
+    personImgUrl = imgUrl;
   }
 
   @override
@@ -124,7 +144,8 @@ class FaceButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             image: DecorationImage(
               image: AssetImage(
-                "assets/$PersonName.png",
+                // "assets/$personName.png",
+                personImgUrl,
               ),
               fit: BoxFit.cover,
             ),
@@ -157,7 +178,7 @@ class FaceButton extends StatelessWidget {
           ),
         ),
         Text(
-          PersonName,
+          personName,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 12,
