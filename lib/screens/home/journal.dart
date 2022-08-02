@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, must_be_immutable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -18,34 +18,12 @@ class _JournalState extends State<Journal> {
   dynamic journalSnapShot;
 
   Future<void> getData() async {
-    print('inside here');
     var collection = FirebaseFirestore.instance.collection('journals');
     var querySnapshots = await collection.get();
-
-    List journalItems = [];
-
     var snapshotData = querySnapshots.docs.map((e) => e.data());
-    // for (var element in snapshotData) {
-    //   journalItems.add(element);
-    // }
-    print(snapshotData);
     setState(() {
       journalSnapShot = snapshotData.toList();
     });
-    // Map<String, dynamic> entries;
-    // for (var queryDocumentSnapshot in querySnapshot.docs) {
-    //   Map<String, dynamic> entry = {
-    //     'addedTime': queryDocumentSnapshot.data()['addedTime'],
-    //     'journalEntry': queryDocumentSnapshot.data()['entry']
-    //   };
-    //   print(entry);
-    // }
-    // setState(() {
-    //   firebaseData(querySnapshot);
-    // });
-    // for (var doc in event.docs) {
-    //   print("${doc.id} => ${doc.data()}");
-    // }
   }
 
   @override
@@ -63,13 +41,10 @@ class _JournalState extends State<Journal> {
         child: CircularProgressIndicator(),
       );
     }
-    print(journalSnapShot);
-    print(journalSnapShot[0]);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          // ignore: prefer_const_literals_to_create_immutables
           children: [
             StartingDesign(
                 "journal", "pen down your daily thoughts at any time", "home"),
@@ -84,7 +59,6 @@ class _JournalState extends State<Journal> {
               ),
               child: TextField(
                 onChanged: (String value) {
-                  print(value);
                   setState(() {
                     journalEntry = value;
                   });
@@ -132,14 +106,12 @@ class _JournalState extends State<Journal> {
                       'addedTime': DateTime.now(),
                       'entry': journalEntry
                     };
-                    print(newJournalEntry);
-                    DocumentReference doc =
-                        await db.collection('journals').add(newJournalEntry);
-                    print(doc.id);
+                    await db.collection('journals').add(newJournalEntry);
 
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text("Journal entry saved!"),
                     ));
+                    getData();
                     FocusScopeNode currentFocus = FocusScope.of(context);
                     if (!currentFocus.hasPrimaryFocus &&
                         currentFocus.focusedChild != null) {
@@ -177,16 +149,10 @@ class _JournalState extends State<Journal> {
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemCount: journalSnapShot.length,
-              itemBuilder: ((context, index) =>
-                  SavedEntries(journalSnapShot[index]['entry'])),
+              itemBuilder: ((context, index) => SavedEntries(
+                  journalSnapShot[index]['entry'],
+                  journalSnapShot[index]['addedTime'])),
             ),
-
-            // SavedEntries(
-            //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
-            // SavedEntries(
-            //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
-            // SavedEntries(
-            //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
             SizedBox(
               height: 30,
             ),
@@ -199,11 +165,11 @@ class _JournalState extends State<Journal> {
 
 class SavedEntries extends StatelessWidget {
   late String Entry;
-  SavedEntries(
-    String E, {
-    Key? key,
-  }) : super(key: key) {
-    Entry = E;
+  late Timestamp entryDate;
+
+  SavedEntries(String entry, Timestamp dt, {Key? key}) : super(key: key) {
+    Entry = entry;
+    entryDate = dt;
   }
 
   DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");

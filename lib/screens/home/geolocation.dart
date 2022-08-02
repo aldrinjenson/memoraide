@@ -1,7 +1,19 @@
+// ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:memoria/screens/home/home.dart';
+import 'package:flutter_map/flutter_map.dart'; // Suitable for most situations
+// ignore: depend_on_referenced_packages
+import 'package:latlong2/latlong.dart';
+
+import 'package:url_launcher/url_launcher.dart';
 import 'package:memoria/widgets/starter_design.dart';
+import 'package:location/location.dart';
+
+List<Map<String, dynamic>> savedPlaces = [
+  {'name': 'Sharat\'s Home', 'lat': 10.02787, 'lon': 76.32965},
+  {'name': 'Nikita\'s Home', 'lat': 26.16816, 'lon': 77.97210},
+  {'name': 'Govt. Hospital', 'lat': 10.05261, 'lon': 76.35560},
+  {'name': 'Nayana\'s Home', 'lat': 54.9, 'lon': 34.9},
+];
 
 class Geolocation extends StatefulWidget {
   const Geolocation({Key? key}) : super(key: key);
@@ -11,16 +23,79 @@ class Geolocation extends StatefulWidget {
 }
 
 class _GeolocationState extends State<Geolocation> {
-  // late GoogleMapController mapController;
+  late LocationData currentCoordinates;
+  double selectedLatitude = 10.026098218386911;
+  double selectedLongitude = 76.326334986141765;
+  late final MapController mapController;
 
-  // final LatLng _center = const LatLng(45.521563, -122.677433);
+  Future<void> _launchUrl(Uri url) async {
+    if (!await launchUrl(url)) {
+      throw 'Could not launch $url';
+    }
+  }
 
-  // void _onMapCreated(GoogleMapController controller) {
-  //   mapController = controller;
-  // }
+  getLocation() async {
+    Location location = Location();
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
+
+    serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        return;
+      }
+    }
+
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    LocationData currLocation = await location.getLocation();
+    setState(() {
+      currentCoordinates = currLocation;
+    });
+  }
+
+  sosLocation() async {
+    final Uri smsLaunchUri = Uri(
+      scheme: 'sms',
+      path: '+919895549782',
+      queryParameters: <String, String>{
+        'body':
+            "Help, I'm in trouble. Reach me at location: 'https://maps.google.com/?q=${currentCoordinates.latitude},${currentCoordinates.longitude}"
+      },
+    );
+    _launchUrl(smsLaunchUri);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getLocation();
+    mapController = MapController();
+  }
+
+  void onSavedPlaceTileClick(
+    double lat,
+    double lon,
+  ) {
+    mapController.onReady.then((result) {
+      mapController.move(LatLng(lat, lon), 18.0);
+    });
+    setState(() {
+      selectedLatitude = lat;
+      selectedLongitude = lon;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    print(selectedLatitude);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -28,11 +103,37 @@ class _GeolocationState extends State<Geolocation> {
           children: <Widget>[
             Stack(
               children: [
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 600,
-                  child: Image(
-                    image: AssetImage("assets/Maps.png"),
+                  child: FlutterMap(
+                    mapController: mapController,
+                    options: MapOptions(
+                        zoom: 10.2,
+                        center: LatLng(selectedLatitude, selectedLongitude)),
+                    layers: [
+                      TileLayerOptions(
+                        urlTemplate:
+                            "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                        userAgentPackageName: 'com.memoria.app',
+                      ),
+                      MarkerLayerOptions(
+                        markers: [
+                          Marker(
+                            point: LatLng(selectedLatitude, selectedLongitude),
+                            width: 80,
+                            height: 80,
+                            builder: (context) => FlutterLogo(),
+                          ),
+                        ],
+                      )
+                    ],
+                    nonRotatedChildren: [
+                      AttributionWidget.defaultWidget(
+                        source: 'OpenStreetMap contributors',
+                        onSourceTapped: null,
+                      ),
+                    ],
                   ),
                 ),
                 Positioned(
@@ -51,12 +152,6 @@ class _GeolocationState extends State<Geolocation> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white,
-                      // image: DecorationImage(
-                      //   image: AssetImage(
-                      //     "frame.png",
-                      //   ),
-                      //   fit: BoxFit.fill,
-                      // ),
                     ),
                   ),
                 ),
@@ -65,9 +160,26 @@ class _GeolocationState extends State<Geolocation> {
             Container(
               margin: EdgeInsets.only(left: 20),
               child: Text(
-                "YOU'RE CURRENTLY AT",
+                "Are you feeling safe?",
                 style: (TextStyle(fontSize: 20)),
               ),
+            ),
+            Center(
+                child: ElevatedButton(
+                    onPressed: () async {
+                      sosLocation();
+                    },
+                    child: Text('Send Emergency SOS'))),
+            // Center(
+            // child: ElevatedButton(
+            //     onPressed: () async {
+            //       LocationData currLocation = await location.getLocation();
+            //       onSavedPlaceTileClick(
+            //           currLocation.latitude, currLocation.longitude);
+            //     },
+            //     child: Text('View current location in Map'))),
+            SizedBox(
+              height: 30,
             ),
             Container(
               width: double.infinity,
@@ -77,17 +189,25 @@ class _GeolocationState extends State<Geolocation> {
                 color: Color.fromARGB(255, 210, 208, 208),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Text(
-                "HOME",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black,
+              child: ElevatedButton(
+                onPressed: () {
+                  mapController.onReady.then((result) {
+                    mapController.move(LatLng(4, 8), 18.0);
+                  });
+                  setState(() {
+                    selectedLatitude = 4;
+                    selectedLongitude = 8;
+                  });
+                },
+                child: Text(
+                  "HOME",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 30,
             ),
             Container(
               margin: EdgeInsets.only(left: 20),
@@ -96,20 +216,17 @@ class _GeolocationState extends State<Geolocation> {
                 style: (TextStyle(fontSize: 20)),
               ),
             ),
-            SavedPlace("SHARAT"),
-            SavedPlace("SRK"),
-            SavedPlace("ALDRIN"),
-            SavedPlace("NAYANA"),
-            SavedPlace("ANJALI"),
-            SavedPlace("NIKITA"),
-
-            // GoogleMap(
-            //   onMapCreated: _onMapCreated,
-            //   initialCameraPosition: CameraPosition(
-            //     target: _center,
-            //     zoom: 11.0,
-            //   ),
-            // ),
+            ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: savedPlaces.length,
+              itemBuilder: ((context, index) => SavedPlace(
+                  savedPlaces[index]['name'],
+                  savedPlaces[index]['lat'],
+                  savedPlaces[index]['lon'],
+                  onSavedPlaceTileClick)),
+            )
+            // SavedPlace("NIKITA"),
           ],
         ),
       ),
@@ -119,11 +236,20 @@ class _GeolocationState extends State<Geolocation> {
 
 class SavedPlace extends StatelessWidget {
   late String PlaceName;
-  SavedPlace(
-    String PN, {
-    Key? key,
-  }) : super(key: key) {
+  late double latitude;
+  late double longitude;
+  late Function onClickFunc;
+
+  SavedPlace(String PN, double lat, double lon, Function onClick, {Key? key})
+      : super(key: key) {
     PlaceName = PN;
+    latitude = lat;
+    longitude = lon;
+    onClickFunc = onClick;
+  }
+
+  handleOnPressed() {
+    onClickFunc(latitude, longitude);
   }
 
   @override
@@ -136,12 +262,15 @@ class SavedPlace extends StatelessWidget {
         color: Color.fromARGB(255, 210, 208, 208),
         borderRadius: BorderRadius.circular(5),
       ),
-      child: Text(
-        "$PlaceName'S HOME",
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 18,
-          color: Colors.black,
+      child: ElevatedButton(
+        onPressed: handleOnPressed,
+        child: Text(
+          PlaceName,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.black,
+          ),
         ),
       ),
     );

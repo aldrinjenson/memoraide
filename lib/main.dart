@@ -44,7 +44,7 @@ Future<void> main() async {
         '/snapshots': (context) => const Snapshots(),
         '/faces': (context) => Faces(),
         '/facesearch': (context) => FaceSearch(),
-        '/faceProfile': (context) => const FaceProfile(),
+        '/faceProfile': (context) => const FaceProfile(pName: 'Sharat'),
         '/journal': (context) => const Journal(),
       },
     ),
