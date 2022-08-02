@@ -3,8 +3,6 @@ import 'package:memoria/screens/home/home.dart';
 import 'package:memoria/widgets/starter_design.dart';
 
 class FaceProfile extends StatefulWidget {
-  // const FaceProfile({Key? key}) : super(key: key);
-
   const FaceProfile({Key? key, required String pName}) : super(key: key);
 
   @override
@@ -12,11 +10,7 @@ class FaceProfile extends StatefulWidget {
 }
 
 class _FacesState extends State<FaceProfile> {
-  late String personName;
-
-  FaceProfile(String pName) {
-    personName = pName;
-  }
+  String personName = 'Sharat';
 
   @override
   Widget build(BuildContext context) {

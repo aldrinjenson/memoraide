@@ -97,20 +97,6 @@ class _FacesState extends State<Faces> {
               },
               itemCount: people.length,
             ),
-            // Wrap(
-            //   runSpacing: 5.0,
-            //   spacing: 5.0,
-            //   children: [
-            //     ListView.builder(
-            //       scrollDirection: Axis.vertical,
-            //       shrinkWrap: true,
-            //       itemCount: people.length,
-            //       itemBuilder: (context, index) => FaceButton(
-            //           people[index].values.toList()[0],
-            //           people[index].values.toList()[1]),
-            //     ),
-            //   ],
-            // ),
             SizedBox(height: 30),
           ],
         ),

@@ -12,7 +12,11 @@ List<Map<String, dynamic>> savedPlaces = [
   {'name': 'Sharat\'s Home', 'lat': 10.02787, 'lon': 76.32965},
   {'name': 'Nikita\'s Home', 'lat': 26.16816, 'lon': 77.97210},
   {'name': 'Govt. Hospital', 'lat': 10.05261, 'lon': 76.35560},
-  {'name': 'Nayana\'s Home', 'lat': 54.9, 'lon': 34.9},
+  {
+    'name': 'Nayana\'s Home',
+    'lat': 9.717334594581466,
+    'lon': 76.68663005155278
+  },
 ];
 
 class Geolocation extends StatefulWidget {
@@ -109,7 +113,7 @@ class _GeolocationState extends State<Geolocation> {
                   child: FlutterMap(
                     mapController: mapController,
                     options: MapOptions(
-                        zoom: 10.2,
+                        zoom: 13.2,
                         center: LatLng(selectedLatitude, selectedLongitude)),
                     layers: [
                       TileLayerOptions(
