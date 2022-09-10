@@ -1,5 +1,6 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:memoria/widgets/starter_design.dart';
 
@@ -85,6 +86,13 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             StartingDesign("MEMORIA", "We are here for you", "homes"),
+            ElevatedButton(
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Successfully logged out')));
+                },
+                child: Text('Log Out')),
             homeButton(
               context,
               "GEOLOCATION",

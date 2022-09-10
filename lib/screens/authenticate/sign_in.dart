@@ -1,5 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:memoria/screens/authenticate/mode_select.dart';
+import 'package:memoria/screens/home/home.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -10,7 +14,7 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String email = "";
+  String email = "john@gmail.com";
   String password = "";
 
   @override
@@ -34,6 +38,12 @@ class _SignInState extends State<SignIn> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     TextFormField(
+                      initialValue: 'john@gmail.com',
+                      onSaved: (String? val) {
+                        setState(() {
+                          email = val!;
+                        });
+                      },
                       decoration: const InputDecoration(
                         hintText: 'Enter Email',
                       ),
@@ -50,6 +60,11 @@ class _SignInState extends State<SignIn> {
                       },
                     ),
                     TextFormField(
+                      onSaved: (String? value) {
+                        setState(() {
+                          password = value!;
+                        });
+                      },
                       decoration: const InputDecoration(
                         hintText: 'Enter password',
                       ),
@@ -64,25 +79,57 @@ class _SignInState extends State<SignIn> {
                     ),
                     SizedBox(height: 40),
                     Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // Validate will return true if the form is valid, or false if
-                            // the form is invalid.
-                            if (!_formKey.currentState!.validate()) {
-                              // Process data.
-                              Navigator.push(
-                                  context,
-                                  // MaterialPageRoute(builder: (context) => const Home()));
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ModeSelect()));
-                            }
-                            // Navigator.push(context, '/home');
-                          },
-                          child: const Text('Sign In'),
-                        ),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            child: ElevatedButton(
+                              onPressed: () async {
+                                if (_formKey.currentState!.validate()) {
+                                  _formKey.currentState?.save();
+                                  String message = '';
+                                  try {
+                                    final credential = await FirebaseAuth
+                                        .instance
+                                        .signInWithEmailAndPassword(
+                                            email: email, password: password);
+                                    if (credential.user != null) {
+                                      message = 'Welcome back $email';
+                                    }
+
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Home()));
+                                  } on FirebaseAuthException catch (e) {
+                                    if (e.code == 'user-not-found') {
+                                      message = 'No user found for this email.';
+                                    } else if (e.code == 'wrong-password') {
+                                      message =
+                                          'Wrong password provided for $email!';
+                                    }
+                                  }
+
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text(message)));
+                                }
+                              },
+                              child: const Text('Sign In'),
+                            ),
+                          ),
+                          SizedBox(height: 30),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/signup');
+                            },
+                            child: Text(
+                              "New user? Sign Up!",
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  color: Colors.blue[400]),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ],

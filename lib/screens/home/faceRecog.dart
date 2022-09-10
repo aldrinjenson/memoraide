@@ -68,17 +68,33 @@ class _FacesState extends State<Faces> {
                   width: 100,
                   height: 100,
                   margin: EdgeInsets.all(5),
-                  child: ElevatedButton(
-                    child: Icon(
-                      Icons.add,
-                      size: 30,
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FaceSearch()));
-                    },
+                  child: Row(
+                    children: [
+                      ElevatedButton(
+                        child: Icon(
+                          Icons.add,
+                          size: 30,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FaceSearch()));
+                        },
+                      ),
+                      ElevatedButton(
+                        child: Icon(
+                          Icons.camera,
+                          size: 30,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FaceSearch()));
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ],

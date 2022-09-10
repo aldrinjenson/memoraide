@@ -34,6 +34,7 @@ Future<void> main() async {
       theme:
           ThemeData(fontFamily: 'Jost', primaryColor: const Color(0XFF0979FD)),
       initialRoute: '/',
+      // home: FirebaseAuth.instance.currentUser != null ? Home() : Authenticate(),
       routes: {
         '/': (context) => const Wrapper(),
         '/home': (context) => const Home(),

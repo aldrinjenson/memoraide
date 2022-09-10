@@ -3,9 +3,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:memoria/screens/cameraScreens/camera_screen.dart';
-import 'package:memoria/screens/home/home.dart';
 import 'package:memoria/widgets/starter_design.dart';
-// import 'package:memoria/screens/home/home.dart';
 
 class Snapshots extends StatefulWidget {
   const Snapshots({Key? key}) : super(key: key);
