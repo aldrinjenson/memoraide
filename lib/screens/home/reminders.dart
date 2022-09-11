@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types
 
+import 'package:memoria/utils.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -15,16 +16,6 @@ class Reminders extends StatefulWidget {
 class _RemindersState extends State<Reminders> {
   String medicineName = '';
   String timeOfDay = '';
-
-  void createNotif() {
-    print('inside');
-    AwesomeNotifications().createNotification(
-        content: NotificationContent(
-            id: 10,
-            channelKey: 'basic_channel',
-            title: "test notif 1",
-            body: 'hello world, this is msg body'));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +68,10 @@ class _RemindersState extends State<Reminders> {
               ),
             ),
             ElevatedButton(
-                onPressed: createNotif, child: Text('Trigger notification')),
+                onPressed: () {
+                  createNotif({'title': 'Test title', 'body': 'lorem ipsum'});
+                },
+                child: Text('Trigger notification')),
             SizedBox(height: 20),
             Center(
               child: ElevatedButton(

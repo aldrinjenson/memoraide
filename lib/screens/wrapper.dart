@@ -16,7 +16,6 @@ class _WrapperState extends State<Wrapper> {
 
   void updateUserStatus() {
     User? user = FirebaseAuth.instance.currentUser;
-    print(user);
     if (!mounted) {
       print('not mounted. exiting');
       return;

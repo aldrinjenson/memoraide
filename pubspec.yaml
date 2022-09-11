@@ -50,6 +50,8 @@ dependencies:
   flutter_map: ^2.1.1
   latlong: ^0.6.1
   awesome_notifications: ^0.6.21
+  firebase_messaging: ^13.0.1
+  firebase_analytics: ^9.3.4
 
 dev_dependencies:
   flutter_test:
