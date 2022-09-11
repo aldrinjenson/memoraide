@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:memoria/screens/authenticate/sign_in.dart';
 import 'package:memoria/screens/authenticate/sign_up.dart';
@@ -18,6 +19,32 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  AwesomeNotifications().initialize(
+    null,
+    [
+      NotificationChannel(
+          channelGroupKey: 'basic_tests',
+          channelKey: 'basic_channel',
+          channelName: 'Basic notifications',
+          channelDescription: 'Notification channel for basic tests',
+          defaultColor: Color(0xFF9D50DD),
+          ledColor: Colors.white,
+          importance: NotificationImportance.High),
+    ],
+  );
+  AwesomeNotifications().isNotificationAllowed().then((allowed) {
+    if (!allowed) {
+      AwesomeNotifications().requestPermissionToSendNotifications();
+    } else {
+      print("Notification permissions received");
+    }
+  });
+
+  AwesomeNotifications().actionStream.listen((event) {
+    print("event recieved");
+    print(event.toMap().toString());
+  });
+
   await Permission.camera.request();
   await Permission.microphone.request();
 

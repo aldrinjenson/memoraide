@@ -238,6 +238,7 @@ class _GeolocationState extends State<Geolocation> {
   }
 }
 
+// ignore: must_be_immutable
 class SavedPlace extends StatelessWidget {
   late String PlaceName;
   late double latitude;

@@ -106,22 +106,20 @@ class _FaceSearchState extends State<FaceSearch> {
                     var uri = navigationAction.request.url!;
 
                     if (![
-                      "http",
-                      "https",
-                      "file",
-                      "chrome",
-                      "data",
-                      "javascript",
-                      "about"
-                    ].contains(uri.scheme)) {
-                      if (await canLaunch(url)) {
-                        // Launch the App
-                        await launch(
-                          url,
-                        );
-                        // and cancel the request
-                        return NavigationActionPolicy.CANCEL;
-                      }
+                          "http",
+                          "https",
+                          "file",
+                          "chrome",
+                          "data",
+                          "javascript",
+                          "about"
+                        ].contains(uri.scheme) &&
+                        await canLaunch(url)) {
+                      await launch(
+                        url,
+                      );
+                      // and cancel the request
+                      return NavigationActionPolicy.CANCEL;
                     }
 
                     return NavigationActionPolicy.ALLOW;
@@ -142,7 +140,7 @@ class _FaceSearchState extends State<FaceSearch> {
                     }
                     setState(() {
                       this.progress = progress / 100;
-                      urlController.text = this.url;
+                      urlController.text = url;
                     });
                   },
                   onUpdateVisitedHistory: (controller, url, androidIsReload) {

@@ -18,12 +18,15 @@ class _JournalState extends State<Journal> {
   dynamic journalSnapShot;
 
   Future<void> getData() async {
-    var collection = FirebaseFirestore.instance.collection('journals');
+    var collection = FirebaseFirestore.instance
+        .collection('journals')
+        .orderBy('addedTime', descending: true);
     var querySnapshots = await collection.get();
     var snapshotData = querySnapshots.docs.map((e) => e.data());
     setState(() {
       journalSnapShot = snapshotData.toList();
     });
+    print(snapshotData.toList());
   }
 
   @override
@@ -36,18 +39,13 @@ class _JournalState extends State<Journal> {
 
   @override
   Widget build(BuildContext context) {
-    if (journalSnapShot == null) {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             StartingDesign(
-                "journal", "pen down your daily thoughts at any time", "home"),
+                "Journal", "pen down your daily thoughts at any time", "home"),
             Container(
               height: 200,
               width: double.infinity,
@@ -92,14 +90,19 @@ class _JournalState extends State<Journal> {
               ),
               child: TextButton(
                 style: TextButton.styleFrom(
+                  backgroundColor:
+                      journalEntry.isEmpty ? Colors.grey : Colors.blue,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6),
                   ),
                 ),
                 onPressed: () async {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text("Saving new entry!"),
-                  ));
+                  String msg = "Saving new entry!";
+                  if (journalEntry.isEmpty) {
+                    return;
+                  }
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(msg)));
                   try {
                     dynamic db = FirebaseFirestore.instance;
                     final newJournalEntry = <String, dynamic>{
@@ -145,14 +148,18 @@ class _JournalState extends State<Journal> {
                 style: TextStyle(fontSize: 22),
               ),
             ),
-            ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: journalSnapShot.length,
-              itemBuilder: ((context, index) => SavedEntries(
-                  journalSnapShot[index]['entry'],
-                  journalSnapShot[index]['addedTime'])),
-            ),
+            journalSnapShot == null
+                ? (Center(
+                    child: CircularProgressIndicator(),
+                  ))
+                : ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: journalSnapShot.length,
+                    itemBuilder: ((context, index) => SavedEntries(
+                        journalSnapShot[index]['entry'],
+                        journalSnapShot[index]['addedTime'])),
+                  ),
             SizedBox(
               height: 30,
             ),
@@ -165,11 +172,11 @@ class _JournalState extends State<Journal> {
 
 class SavedEntries extends StatelessWidget {
   late String Entry;
-  late Timestamp entryDate;
+  late DateTime date;
 
   SavedEntries(String entry, Timestamp dt, {Key? key}) : super(key: key) {
     Entry = entry;
-    entryDate = dt;
+    date = dt.toDate();
   }
 
   DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
@@ -208,7 +215,7 @@ class SavedEntries extends StatelessWidget {
               ),
             ),
             TextSpan(
-              text: "\n\nJournaled at 11:59 PM",
+              text: "\n\nJournaled at ${dateFormat.format(date)}",
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.normal,
