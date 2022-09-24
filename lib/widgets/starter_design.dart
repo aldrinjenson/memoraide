@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class StartingDesign extends StatelessWidget {
   late String DesignText1;
   late String DesignText2;
