@@ -2,9 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:memoria/screens/authenticate/mode_select.dart';
 import 'package:memoria/screens/authenticate/sign_in.dart';
-import 'package:memoria/screens/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUp extends StatefulWidget {

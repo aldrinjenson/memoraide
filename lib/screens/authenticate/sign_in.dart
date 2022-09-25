@@ -2,7 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:memoria/screens/authenticate/mode_select.dart';
 import 'package:memoria/screens/home/home.dart';
 
 class SignIn extends StatefulWidget {

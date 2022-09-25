@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

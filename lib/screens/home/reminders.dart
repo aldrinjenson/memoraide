@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, unused_import, must_be_immutable
 
 import 'package:memoria/utils.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
@@ -31,7 +31,7 @@ class _RemindersState extends State<Reminders> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 150,
                     height: 100,
                     child: Image(
