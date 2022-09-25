@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Medicine extends StatelessWidget {
+class Medicine extends StatelessWidget { 
+  //this widget displays the medicine name, times to be taken at, and status of intake based on color 
   late int MedicineNumber;
   late String MedicineTime;
   late String MedicineMealTime;
@@ -99,6 +100,8 @@ class Medicine extends StatelessWidget {
 }
 
 class MedicineTime extends StatefulWidget {
+  /* a widget utilized in the Medicine widget that focuses on the three times of day, 
+  as well as before or after food */
   late String MedicineTimes;
 
   MedicineTime(
