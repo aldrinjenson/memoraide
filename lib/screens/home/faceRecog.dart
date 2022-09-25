@@ -61,43 +61,45 @@ class _FacesState extends State<Faces> {
                 },
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  margin: EdgeInsets.all(5),
-                  child: Row(
-                    children: [
-                      ElevatedButton(
-                        child: Icon(
-                          Icons.add,
-                          size: 30,
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => FaceSearch()));
-                        },
-                      ),
-                      ElevatedButton(
-                        child: Icon(
-                          Icons.camera,
-                          size: 30,
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => FaceSearch()));
-                        },
-                      ),
-                    ],
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          EdgeInsets.symmetric(horizontal: 25, vertical: 15)),
+                    ),
+                    child: Icon(
+                      Icons.add,
+                      size: 30,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FaceSearch()));
+                    },
                   ),
-                ),
-              ],
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          EdgeInsets.symmetric(horizontal: 25, vertical: 15)),
+                    ),
+                    child: Icon(
+                      Icons.camera,
+                      size: 30,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FaceSearch()));
+                    },
+                  ),
+                ],
+              ),
             ),
             GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
