@@ -49,21 +49,30 @@ class _SnapshotsState extends State<Snapshots> {
             StartingDesign("snapshots",
                 "add memories that you would like to capture forever", "home"),
             ElevatedButton(
-                onPressed: () async {
-                  final cameras = await availableCameras();
-                  final firstCamera = cameras.first;
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all<EdgeInsets>(
+                    EdgeInsets.symmetric(horizontal: 25, vertical: 10)),
+              ),
+              onPressed: () async {
+                final cameras = await availableCameras();
+                final firstCamera = cameras.first;
 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => TakePictureScreen(
-                        camera: firstCamera,
-                      ),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TakePictureScreen(
+                      camera: firstCamera,
                     ),
-                  );
-                },
-                child: Text('+')),
-            SizedBox(height: 20),
+                  ),
+                );
+              },
+              child: Text(
+                'Add Photos!',
+                style: TextStyle(
+                  fontSize: 24,
+                ),
+              ),
+            ),
             snapShots == null
                 ? (Center(
                     child: CircularProgressIndicator(),
@@ -143,7 +152,7 @@ class Snapshot extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             margin: EdgeInsets.symmetric(horizontal: 20),
-            width: double.infinity,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
               color: Colors.white,
@@ -151,11 +160,15 @@ class Snapshot extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  imageText,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 16,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width - 160,
+                  child: Text(
+                    imageText,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 16,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ),
                 Text(
