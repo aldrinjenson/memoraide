@@ -12,11 +12,7 @@ List<Map<String, dynamic>> savedPlaces = [
   {'name': 'Sharat\'s Home', 'lat': 10.02787, 'lon': 76.32965},
   {'name': 'Nikita\'s Home', 'lat': 26.16816, 'lon': 77.97210},
   {'name': 'Govt. Hospital', 'lat': 10.05261, 'lon': 76.35560},
-  {
-    'name': 'Nayana\'s Home',
-    'lat': 9.717334594581466,
-    'lon': 76.68663005155278
-  },
+  {'name': 'Nayana\'s Home', 'lat': 9.717334594581466, 'lon': 76.68663005155278}
 ];
 
 class Geolocation extends StatefulWidget {
@@ -143,10 +139,7 @@ class _GeolocationState extends State<Geolocation> {
                 Positioned(
                   top: 0,
                   child: StartingDesign(
-                    "places",
-                    "check out where you are at",
-                    "home",
-                  ),
+                      "places", "check out where you are at", "home"),
                 ),
                 Positioned(
                   bottom: 0,
@@ -168,12 +161,27 @@ class _GeolocationState extends State<Geolocation> {
                 style: (TextStyle(fontSize: 20)),
               ),
             ),
-            Center(
-                child: ElevatedButton(
-                    onPressed: () async {
-                      sosLocation();
-                    },
-                    child: Text('Send Emergency SOS'))),
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: TextButton(
+                style: ButtonStyle(
+                  padding: MaterialStateProperty.all<EdgeInsets>(
+                      EdgeInsets.symmetric(horizontal: 25, vertical: 20)),
+                ),
+                onPressed: () async {
+                  sosLocation();
+                },
+                child: Text(
+                  'Send Emergency SOS',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
             // Center(
             // child: ElevatedButton(
             //     onPressed: () async {
@@ -182,18 +190,19 @@ class _GeolocationState extends State<Geolocation> {
             //           currLocation.latitude, currLocation.longitude);
             //     },
             //     child: Text('View current location in Map'))),
-            SizedBox(
-              height: 30,
-            ),
+
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 15),
               margin: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 210, 208, 208),
+                color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: ElevatedButton(
+              child: TextButton(
+                style: ButtonStyle(
+                  padding: MaterialStateProperty.all<EdgeInsets>(
+                      EdgeInsets.symmetric(horizontal: 25, vertical: 20)),
+                ),
                 onPressed: () {
                   mapController.onReady.then((result) {
                     mapController.move(LatLng(4, 8), 18.0);
@@ -208,7 +217,7 @@ class _GeolocationState extends State<Geolocation> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -261,20 +270,23 @@ class SavedPlace extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 15),
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 210, 208, 208),
-        borderRadius: BorderRadius.circular(5),
+        color: Colors.grey,
+        borderRadius: BorderRadius.circular(10),
       ),
-      child: ElevatedButton(
+      child: TextButton(
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all<EdgeInsets>(
+              EdgeInsets.symmetric(horizontal: 25, vertical: 20)),
+        ),
         onPressed: handleOnPressed,
         child: Text(
           PlaceName,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 18,
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
       ),
