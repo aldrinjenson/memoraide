@@ -1,5 +1,4 @@
-// ignore: unused_import
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, unused_import
 
 // ignore: unused_import
 import 'dart:async';
@@ -33,7 +32,8 @@ class _FaceSearchState extends State<FaceSearch> {
       ));
 
   late PullToRefreshController pullToRefreshController;
-  String url = "";
+  // String siteUrl = "https://memoria-image-classifier.netlify.app/";
+  String url = "https://memoria-image-classifier.netlify.app/";
   double progress = 0;
   final urlController = TextEditingController();
 
@@ -64,7 +64,7 @@ class _FaceSearchState extends State<FaceSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Recognize your loved ones!11")),
+        appBar: AppBar(title: Text("Recognize your loved ones!")),
         body: SafeArea(
             child: Column(children: <Widget>[
           TextField(
@@ -84,9 +84,7 @@ class _FaceSearchState extends State<FaceSearch> {
               children: [
                 InAppWebView(
                   key: webViewKey,
-                  initialUrlRequest: URLRequest(
-                      url: Uri.parse(
-                          "https://memoria-image-classifier.netlify.app/")),
+                  initialUrlRequest: URLRequest(url: Uri.parse(url)),
                   initialOptions: options,
                   pullToRefreshController: pullToRefreshController,
                   onWebViewCreated: (controller) {

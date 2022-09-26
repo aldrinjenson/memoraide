@@ -2,7 +2,9 @@
 // ignore: file_names
 // ignore_for_file: file_names, prefer_const_constructors_in_immutables, must_be_immutable, prefer_const_literals_to_create_immutables
 
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:memoria/screens/cameraScreens/camera_screen.dart';
 import 'package:memoria/screens/home/face_profile.dart';
 import 'package:memoria/screens/home/face_search.dart';
 import 'package:memoria/widgets/starter_design.dart';
@@ -28,98 +30,116 @@ class _FacesState extends State<Faces> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            StartingDesign(
-                "people", "hold your near and dear loved ones close", "home"),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(15),
-              margin: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 210, 208, 208),
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: TextField(
-                keyboardType: TextInputType.multiline,
-                minLines: 1,
-                maxLines: 1, // when user presses enter it will adapt to it
-                decoration:
-                    InputDecoration.collapsed(hintText: 'Search for people..'),
-                onChanged: (String searchVal) {
-                  print(searchVal);
-                  Iterable<Map<String, String>> filtered = allPeople.where(
-                      (el) => el.values
-                          .toList()[0]
-                          .toLowerCase()
-                          .contains(searchVal));
-                  setState(() {
-                    people = filtered.toList();
-                  });
-                },
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: SingleChildScrollView(
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                          EdgeInsets.symmetric(horizontal: 25, vertical: 15)),
-                    ),
-                    child: Icon(
-                      Icons.add,
-                      size: 30,
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FaceSearch()));
-                    },
-                  ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                          EdgeInsets.symmetric(horizontal: 25, vertical: 15)),
-                    ),
-                    child: Icon(
-                      Icons.camera,
-                      size: 30,
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FaceSearch()));
-                    },
-                  ),
-                ],
-              ),
+          StartingDesign(
+              "people", "hold your near and dear loved ones close", "home"),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(15),
+            margin: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 210, 208, 208),
+              borderRadius: BorderRadius.circular(5),
             ),
-            GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 3 / 2, // width/height ratio
-                mainAxisSpacing: 0, // between rows
-                crossAxisSpacing: 0, // between columns
-              ),
-              shrinkWrap: true,
-              itemBuilder: (BuildContext ctx, index) {
-                return FaceButton(people[index].values.toList()[0],
-                    people[index].values.toList()[1]);
+            child: TextField(
+              keyboardType: TextInputType.multiline,
+              minLines: 1,
+              maxLines: 1, // when user presses enter it will adapt to it
+              decoration:
+                  InputDecoration.collapsed(hintText: 'Search for people..'),
+              onChanged: (String searchVal) {
+                print(searchVal);
+                Iterable<Map<String, String>> filtered = allPeople.where((el) =>
+                    el.values.toList()[0].toLowerCase().contains(searchVal));
+                setState(() {
+                  people = filtered.toList();
+                });
               },
-              itemCount: people.length,
             ),
-            SizedBox(height: 30),
-          ],
-        ),
-      ),
-    );
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 100,
+                height: 100,
+                margin: EdgeInsets.all(5),
+                child: Row(
+                  children: [
+                    ElevatedButton(
+                      child: Icon(
+                        Icons.add,
+                        size: 30,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FaceSearch()));
+                      },
+                    ),
+                    ElevatedButton(
+                      child: Icon(
+                        Icons.camera,
+                        size: 30,
+                      ),
+                      onPressed: () async {
+                        // final cameras = await availableCameras();
+                        // final firstCamera = cameras.first;
+
+                        // // ignore: use_build_context_synchronously
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => TakePictureScreen(
+                        //       camera: firstCamera,
+                        //     ),
+                        //   ),
+                        // );
+                      },
+                    ),
+                  ],
+                ),
+                //     ElevatedButton(
+                //       style: ButtonStyle(
+                //         padding: MaterialStateProperty.all<EdgeInsets>(
+                //             EdgeInsets.symmetric(horizontal: 25, vertical: 15)),
+                //       ),
+                //       child: Icon(
+                //         Icons.camera,
+                //         size: 30,
+                //       ),
+                //       onPressed: () {
+                //         Navigator.push(
+                //             context,
+                //             MaterialPageRoute(
+                //                 builder: (context) => FaceSearch()));
+                //       },
+                //     ),
+                //   ],
+                // ),
+              ),
+              GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 3 / 2, // width/height ratio
+                  mainAxisSpacing: 0, // between rows
+                  crossAxisSpacing: 0, // between columns
+                ),
+                shrinkWrap: true,
+                itemBuilder: (BuildContext ctx, index) {
+                  return FaceButton(people[index].values.toList()[0],
+                      people[index].values.toList()[1]);
+                },
+                itemCount: people.length,
+              ),
+              SizedBox(height: 30),
+            ],
+          ),
+        ])));
   }
 }
 
