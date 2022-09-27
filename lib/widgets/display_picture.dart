@@ -40,6 +40,11 @@ class DisplayPictureScreen extends StatelessWidget {
             ),
             ElevatedButton(
                 onPressed: () async {
+                  if (myController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Please add a valid description!")));
+                    return;
+                  }
                   String fileName = imageName + DateTime.now().toString();
                   final imageRef = storageRef.child(fileName);
                   try {

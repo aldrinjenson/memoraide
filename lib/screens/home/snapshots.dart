@@ -80,6 +80,7 @@ class _SnapshotsState extends State<Snapshots> {
                 : ListView.builder(
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
+                    physics: ScrollPhysics(),
                     itemCount: snapShots.length,
                     itemBuilder: ((context, index) => Snapshot(
                         imageUrl: snapShots[index]['url'],
@@ -167,7 +168,7 @@ class Snapshot extends StatelessWidget {
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontSize: 16,
-                      overflow: TextOverflow.ellipsis,
+                      // overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ),

@@ -139,7 +139,7 @@ class _GeolocationState extends State<Geolocation> {
                 Positioned(
                   top: 0,
                   child: StartingDesign(
-                      "places", "check out where you are at", "home"),
+                      "Places", "Check out where you are at!", "home"),
                 ),
                 Positioned(
                   bottom: 0,

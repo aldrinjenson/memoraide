@@ -26,7 +26,6 @@ class _JournalState extends State<Journal> {
     setState(() {
       journalSnapShot = snapshotData.toList();
     });
-    print(snapshotData.toList());
   }
 
   @override
@@ -155,6 +154,7 @@ class _JournalState extends State<Journal> {
                 : ListView.builder(
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
+                    physics: ScrollPhysics(),
                     itemCount: journalSnapShot.length,
                     itemBuilder: ((context, index) => SavedEntries(
                         journalSnapShot[index]['entry'],

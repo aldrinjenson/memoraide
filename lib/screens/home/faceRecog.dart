@@ -81,46 +81,8 @@ class _FacesState extends State<Faces> {
                                 builder: (context) => FaceSearch()));
                       },
                     ),
-                    ElevatedButton(
-                      child: Icon(
-                        Icons.camera,
-                        size: 30,
-                      ),
-                      onPressed: () async {
-                        // final cameras = await availableCameras();
-                        // final firstCamera = cameras.first;
-
-                        // // ignore: use_build_context_synchronously
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => TakePictureScreen(
-                        //       camera: firstCamera,
-                        //     ),
-                        //   ),
-                        // );
-                      },
-                    ),
                   ],
                 ),
-                //     ElevatedButton(
-                //       style: ButtonStyle(
-                //         padding: MaterialStateProperty.all<EdgeInsets>(
-                //             EdgeInsets.symmetric(horizontal: 25, vertical: 15)),
-                //       ),
-                //       child: Icon(
-                //         Icons.camera,
-                //         size: 30,
-                //       ),
-                //       onPressed: () {
-                //         Navigator.push(
-                //             context,
-                //             MaterialPageRoute(
-                //                 builder: (context) => FaceSearch()));
-                //       },
-                //     ),
-                //   ],
-                // ),
               ),
               GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

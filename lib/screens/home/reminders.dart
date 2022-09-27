@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, unused_import, must_be_immutable
+// ignore_for_file: camel_case_types, unused_import, must_be_immutable, constant_identifier_names, use_build_context_synchronously
 
 import 'package:memoria/utils.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
@@ -14,9 +14,49 @@ class Reminders extends StatefulWidget {
   State<Reminders> createState() => _RemindersState();
 }
 
+const String MORNING = "MORNING";
+const String AFTERNOON = "AFTERNOON";
+const String EVENING = "EVENING";
+
 class _RemindersState extends State<Reminders> {
   String medicineName = '';
   String timeOfDay = '';
+  List selectedTimes = [];
+
+  dynamic firebaseData;
+  dynamic reminderSnapShot = [];
+
+  Future<void> getData() async {
+    var collection = FirebaseFirestore.instance
+        .collection('reminders')
+        .orderBy('addedTime', descending: true);
+    var querySnapshots = await collection.get();
+    var snapshotData = querySnapshots.docs.map((e) => e.data());
+    setState(() {
+      reminderSnapShot = snapshotData.toList();
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  toggleSelectedTime(String timeString) => () {
+        print(selectedTimes);
+        if (selectedTimes.contains(timeString)) {
+          setState(() {
+            selectedTimes = selectedTimes
+                .where((element) => element != timeString)
+                .toList();
+          });
+        } else {
+          setState(() {
+            selectedTimes = [...selectedTimes, timeString];
+          });
+        }
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -90,9 +130,25 @@ class _RemindersState extends State<Reminders> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            MedicineTime("MORNING"),
-                            MedicineTime("AFTERNOON"),
-                            MedicineTime("EVENING"),
+                            TextButton(
+                              onPressed: toggleSelectedTime(MORNING),
+                              child: Text(
+                                MORNING,
+                                style: TextStyle(
+                                    backgroundColor:
+                                        selectedTimes.contains(MORNING)
+                                            ? Colors.green
+                                            : Colors.blue),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: toggleSelectedTime(AFTERNOON),
+                              child: Text(AFTERNOON),
+                            ),
+                            TextButton(
+                              onPressed: toggleSelectedTime(EVENING),
+                              child: Text(EVENING),
+                            ),
                           ],
                         ),
                         SizedBox(
@@ -127,26 +183,33 @@ class _RemindersState extends State<Reminders> {
                               ),
                             ),
                             onPressed: () async {
-                              // Navigator.pop(context);
+                              if (selectedTimes.isEmpty) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text("Please select a time!"),
+                                ));
+                                return;
+                              }
+
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
-                                content: Text("Saving new medicine!"),
+                                content: Text("Medicine reminder adding!"),
                               ));
                               try {
-                                // dynamic db = FirebaseFirestore.instance;
-                                // final newReminderEntry =
-                                //     <String, dynamic>{
-                                //   'addedTime': DateTime.now(),
-                                //   'entry': reminderEntry
-                                // };
-                                // await db
-                                //     .collection('reminders')
-                                //     .add(newJournalEntry);
+                                // print(medicineName);
+                                dynamic db = FirebaseFirestore.instance;
+                                final newReminderEntry = <String, dynamic>{
+                                  'addedTime': DateTime.now(),
+                                  'entry': medicineName,
+                                  'timeOfDay': selectedTimes,
+                                };
+                                await db
+                                    .collection('reminders')
+                                    .add(newReminderEntry);
+                                print("Added");
 
-                                // ScaffoldMessenger.of(context)
-                                //     .showSnackBar(SnackBar(
-                                //   content: Text("Medicine saved!"),
-                                // ));
+                                getData();
+                                Navigator.pop(context);
                                 // getData();
                                 // FocusScopeNode currentFocus =
                                 //     FocusScope.of(context);
@@ -155,6 +218,7 @@ class _RemindersState extends State<Reminders> {
                                 //   currentFocus.focusedChild?.unfocus();
                                 // }
                               } catch (e) {
+                                print(e);
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
                                   content: Text("Error in saving medicine!"),
@@ -216,7 +280,9 @@ class _RemindersState extends State<Reminders> {
                           ),
                         ),
                         child: Text(
-                          "3 more medicines",
+                          reminderSnapShot.isEmpty
+                              ? "No medicines!"
+                              : "${reminderSnapShot.length} more medicines",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
@@ -238,14 +304,31 @@ class _RemindersState extends State<Reminders> {
 
                   //trigger notif
                   onPressed: () {
-                    createNotif({'title': 'Test title', 'body': 'lorem ipsum'});
+                    createNotif({
+                      'title': 'Medicine Reminder!',
+                      'body': 'You have got a medicine pending!'
+                    });
                   },
                   child: Text('Trigger notification')),
             ),
 
             SizedBox(height: 20),
 
-            Medicine(1, "MORNING", "AFTER FOOD"),
+            reminderSnapShot.isEmpty
+                ? (Center(
+                    child: CircularProgressIndicator(),
+                  ))
+                : ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    itemCount: reminderSnapShot.length,
+                    itemBuilder: ((context, index) => Medicine(
+                        index,
+                        reminderSnapShot[index]['timeOfDay'],
+                        reminderSnapShot[index]['entry'])),
+                  ),
+            // Medicine(1, "MORNING", "AFTER FOOD"),
             // Medicine(2, "AFTERNOON", "BEFORE FOOD"),
             // Medicine(3, "EVENING", "BEFORE FOOD"),
             // Medicine(4, "EVENING", "AFTER FOOD"),

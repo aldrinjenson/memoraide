@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class Medicine extends StatelessWidget { 
-  //this widget displays the medicine name, times to be taken at, and status of intake based on color 
+class Medicine extends StatelessWidget {
+  //this widget displays the medicine name, times to be taken at, and status of intake based on color
   late int MedicineNumber;
-  late String MedicineTime;
-  late String MedicineMealTime;
+  late List MedicineTime;
+  late String MedicineName;
   Medicine(
     int MN,
-    String MT,
+    List MT,
     String MMT, {
     Key? key,
   }) : super(key: key) {
     MedicineNumber = MN;
     MedicineTime = MT;
-    MedicineMealTime = MMT;
+    MedicineName = MMT;
   }
 
   @override
@@ -38,27 +38,28 @@ class Medicine extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Text(
-                  MedicineTime,
+                  MedicineTime.join(', '),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 14,
                   ),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 27, 27, 27),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Text(
-                  MedicineMealTime,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                  ),
-                ),
-              ),
+
+              // Container(
+              //   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              //   decoration: BoxDecoration(
+              //     color: Color.fromARGB(255, 27, 27, 27),
+              //     borderRadius: BorderRadius.circular(5),
+              //   ),
+              //   child: Text(
+              //     MedicineName,
+              //     style: TextStyle(
+              //       color: Colors.white,
+              //       fontSize: 14,
+              //     ),
+              //   ),
+              // ),
             ],
           ),
           Container(
@@ -83,7 +84,7 @@ class Medicine extends StatelessWidget {
             ),
             child: TextButton(
               child: Text(
-                "PARACETAMOL(TAKEN)",
+                MedicineName,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -143,4 +144,3 @@ class _MedicineTimeState extends State<MedicineTime> {
     );
   }
 }
-

@@ -108,7 +108,7 @@ class _HomeState extends State<Home> {
             homeButton(
               context,
               "FACES",
-              "faces",
+              "facesearch",
               "testsnap2",
             ),
             homeButton(
