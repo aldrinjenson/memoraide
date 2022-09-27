@@ -43,13 +43,13 @@ class _RemindersState extends State<Reminders> {
     getData();
   }
 
+  bool isMorningPresent = false;
   toggleSelectedTime(String timeString) => () {
-        print(selectedTimes);
         if (selectedTimes.contains(timeString)) {
+          List newSelectedTimes =
+              selectedTimes.where((element) => element != timeString).toList();
           setState(() {
-            selectedTimes = selectedTimes
-                .where((element) => element != timeString)
-                .toList();
+            selectedTimes = newSelectedTimes;
           });
         } else {
           setState(() {
@@ -135,19 +135,33 @@ class _RemindersState extends State<Reminders> {
                               child: Text(
                                 MORNING,
                                 style: TextStyle(
-                                    backgroundColor:
-                                        selectedTimes.contains(MORNING)
-                                            ? Colors.green
-                                            : Colors.blue),
+                                    // backgroundColor: Colors.amber,
+                                    color: selectedTimes.isEmpty
+                                        ? Colors.green
+                                        : Colors.blue),
                               ),
                             ),
                             TextButton(
                               onPressed: toggleSelectedTime(AFTERNOON),
-                              child: Text(AFTERNOON),
+                              child: Text(
+                                AFTERNOON,
+                                style: TextStyle(
+                                    // backgroundColor: Colors.amber,
+                                    color: selectedTimes.contains(AFTERNOON)
+                                        ? Colors.green
+                                        : Colors.blue),
+                              ),
                             ),
                             TextButton(
                               onPressed: toggleSelectedTime(EVENING),
-                              child: Text(EVENING),
+                              child: Text(
+                                EVENING,
+                                style: TextStyle(
+                                    // backgroundColor: Colors.amber,
+                                    color: selectedTimes.contains(EVENING)
+                                        ? Colors.green
+                                        : Colors.blue),
+                              ),
                             ),
                           ],
                         ),
@@ -304,6 +318,11 @@ class _RemindersState extends State<Reminders> {
 
                   //trigger notif
                   onPressed: () {
+                    // createScheduledNotification({
+                    //   'title': "Schedule notification",
+                    //   'body': "This is a scheduled notification",
+                    //   'scheduleTime': DateTime.now().add(Duration(seconds: 3))
+                    // });
                     createNotif({
                       'title': 'Medicine Reminder!',
                       'body': 'You have got a medicine pending!'
