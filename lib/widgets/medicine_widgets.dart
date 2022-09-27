@@ -25,7 +25,7 @@ class Medicine extends StatelessWidget {
           Row(
             children: [
               Text(
-                "MEDICINE $MedicineNumber",
+                "MEDICINE ${MedicineNumber + 1}",
                 style: TextStyle(
                   fontSize: 16,
                 ),

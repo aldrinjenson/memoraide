@@ -9,10 +9,26 @@ import 'package:memoria/widgets/starter_design.dart';
 import 'package:location/location.dart';
 
 List<Map<String, dynamic>> savedPlaces = [
-  {'name': 'Sharat\'s Home', 'lat': 10.02787, 'lon': 76.32965},
-  {'name': 'Nikita\'s Home', 'lat': 26.16816, 'lon': 77.97210},
-  {'name': 'Govt. Hospital', 'lat': 10.05261, 'lon': 76.35560},
-  {'name': 'Nayana\'s Home', 'lat': 9.717334594581466, 'lon': 76.68663005155278}
+  {
+    'name': 'Aldrin\'s Home',
+    'lat': 10.026098218386912,
+    'lon': 76.326334986141765
+  },
+  {
+    'name': 'Edwin\'s Home',
+    'lat': 10.026098218386910,
+    'lon': 76.326334986141765
+  },
+  {
+    'name': 'Govt. Hospital',
+    'lat': 10.026098218386911,
+    'lon': 76.326334986141764
+  },
+  {
+    'name': 'Govt. Hospital',
+    'lat': 10.026098218386911,
+    'lon': 76.326334986141764
+  },
 ];
 
 class Geolocation extends StatefulWidget {

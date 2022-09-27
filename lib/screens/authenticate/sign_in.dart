@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:memoria/screens/authenticate/mode_select.dart';
 import 'package:memoria/screens/home/home.dart';
 
 class SignIn extends StatefulWidget {
@@ -97,9 +98,12 @@ class _SignInState extends State<SignIn> {
                                     }
 
                                     Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Home()));
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ModeSelect(),
+                                        // Home(),
+                                      ),
+                                    );
                                   } on FirebaseAuthException catch (e) {
                                     if (e.code == 'user-not-found') {
                                       message = 'No user found for this email.';

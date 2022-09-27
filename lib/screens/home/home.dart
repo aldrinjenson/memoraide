@@ -101,13 +101,13 @@ class _HomeState extends State<Home> {
             ),
             homeButton(
               context,
-              "REMINDERS",
+              "MEDICINE REMINDERS",
               "reminders",
               "testsnap3",
             ),
             homeButton(
               context,
-              "FACES",
+              "REMEMBER MEMORIES",
               "facesearch",
               "testsnap2",
             ),
