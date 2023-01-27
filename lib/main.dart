@@ -14,7 +14,7 @@ import 'package:memoria/screens/home/geolocation.dart';
 import 'package:memoria/screens/home/home.dart';
 import 'package:memoria/screens/home/journal.dart';
 import 'package:memoria/screens/home/reminders.dart';
-import 'package:memoria/screens/home/snapshots.dart';
+import 'package:memoria/screens/snapshots_page.dart';
 import 'package:memoria/screens/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
