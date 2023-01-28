@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:memoria/widgets/custom_button.dart';
 import 'package:memoria/widgets/starter_design.dart';
 
 class Home extends StatefulWidget {
@@ -86,13 +87,14 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             StartingDesign("MEMORIA", "We are here for you", "homes"),
-            ElevatedButton(
-                onPressed: () async {
-                  await FirebaseAuth.instance.signOut();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Successfully logged out')));
-                },
-                child: Text('Log Out')),
+            CustomButton(
+              text: 'Log Out',
+              callback: () async {
+                await FirebaseAuth.instance.signOut();
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Successfully logged out')));
+              },
+            ),
             homeButton(
               context,
               "GEOLOCATION",

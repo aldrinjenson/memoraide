@@ -1,10 +1,9 @@
-// ignore_for_file: use_build_context_synchronously, must_be_immutable
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:memoria/widgets/journal_items.dart';
 import 'package:memoria/widgets/starter_design.dart';
-import 'package:intl/intl.dart';
-// import 'package:memoria/screens/home/home.dart';
 
 class Journal extends StatefulWidget {
   const Journal({Key? key}) : super(key: key);
@@ -156,70 +155,12 @@ class _JournalState extends State<Journal> {
                     shrinkWrap: true,
                     physics: ScrollPhysics(),
                     itemCount: journalSnapShot.length,
-                    itemBuilder: ((context, index) => SavedEntries(
+                    itemBuilder: ((context, index) => JournalItem(
                         journalSnapShot[index]['entry'],
                         journalSnapShot[index]['addedTime'])),
                   ),
             SizedBox(
               height: 30,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class SavedEntries extends StatelessWidget {
-  late String Entry;
-  late DateTime date;
-
-  SavedEntries(String entry, Timestamp dt, {Key? key}) : super(key: key) {
-    Entry = entry;
-    date = dt.toDate();
-  }
-
-  DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      padding: EdgeInsets.all(25),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black,
-            blurRadius: 30,
-            spreadRadius: -30,
-            offset: Offset(4, 8), // Shadow position
-          ),
-        ],
-      ),
-      child: Text.rich(
-        TextSpan(
-          text: DateTime.now().toString().substring(0, 10),
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-          ),
-          children: <InlineSpan>[
-            TextSpan(
-              text: Entry,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            TextSpan(
-              text: "\n\nJournaled at ${dateFormat.format(date)}",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-              ),
             ),
           ],
         ),
