@@ -41,7 +41,7 @@ class _SnapshotsState extends State<Snapshots> {
     getData();
   }
 
-  void generateVideo() {
+  Future<void> generateVideo() async {
     print('generating video');
     print(snapShots);
     List images = snapShots
@@ -49,7 +49,8 @@ class _SnapshotsState extends State<Snapshots> {
             {"imgName": snapshot["imageName"], "url": snapshot['url']})
         .toList();
     print(images);
-    String videoUrl = callBackendAPI(images) as String;
+    String videoUrl = await callBackendAPI(images);
+    print(videoUrl);
     Navigator.pushNamed(context, '/snapshotVideo',
         arguments: {"videoUrl": videoUrl});
   }

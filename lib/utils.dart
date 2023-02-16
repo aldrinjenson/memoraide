@@ -43,19 +43,14 @@ void createScheduledNotification(Map data) async {
 
 Future<dynamic> callBackendAPI(dynamic params) async {
   String? BackendAPI = dotenv.env['BACKEND_URI'];
-  print(BackendAPI);
 
   Uri uri = Uri.parse('$BackendAPI/movieFromSnaps');
   String jsonData = jsonEncode({"params": params});
 
-  print(uri);
-  print(params);
   try {
     final response = await http.post(uri,
         headers: {'Content-Type': 'application/json'}, body: jsonData);
-    print(response);
     print(response.body);
-
     // var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
     // print(decodedResponse);
 
@@ -65,6 +60,7 @@ Future<dynamic> callBackendAPI(dynamic params) async {
       // handle the API error
       print('API error: ${response.statusCode}');
     }
+    return response.body;
   } catch (e) {
     print('Network error: $e');
     return "Error";

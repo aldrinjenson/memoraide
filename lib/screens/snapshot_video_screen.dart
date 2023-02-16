@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:video_player/video_player.dart';
 import 'package:memoria/widgets/starter_design.dart';
 
@@ -9,6 +10,7 @@ class SnapShotVideoScreen extends StatefulWidget {
       : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _SnapShotVideoScreenState createState() => _SnapShotVideoScreenState();
 }
 
@@ -18,7 +20,11 @@ class _SnapShotVideoScreenState extends State<SnapShotVideoScreen> {
 
   @override
   void initState() {
-    _controller = VideoPlayerController.network(widget.videoUrl);
+    String? BackendAPI = dotenv.env['BACKEND_URI'];
+    print(widget.videoUrl);
+    _controller =
+        VideoPlayerController.network("http://192.168.184.118:5500/output.mp4");
+    // VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4");
     _initializeVideoPlayerFuture = _controller.initialize();
     _controller.setLooping(true);
     super.initState();
