@@ -1,5 +1,7 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:memoria/screens/snapshot_video_screen.dart';
 import 'package:memoria/utils.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +59,7 @@ Future<void> main() async {
 
   await Permission.camera.request();
   await Permission.microphone.request();
+  await dotenv.load(fileName: ".env");
 
   if (Platform.isAndroid) {
     await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
@@ -121,6 +124,9 @@ Future<void> main() async {
         '/facesearch': (context) => FaceSearch(),
         '/faceProfile': (context) => const FaceProfile(pName: 'Sharat'),
         '/journal': (context) => const Journal(),
+        '/snapshotVideo': (context) => const SnapShotVideoScreen(
+              videoUrl: 'http://localhost:5000/video',
+            ),
       },
     ),
   );

@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:memoria/screens/cameraScreens/camera_screen.dart';
+import 'package:memoria/utils.dart';
 import 'package:memoria/widgets/custom_button.dart';
 import 'package:memoria/widgets/snapshot_image_card.dart';
 import 'package:memoria/widgets/starter_design.dart';
@@ -17,7 +18,7 @@ class Snapshots extends StatefulWidget {
 
 class _SnapshotsState extends State<Snapshots> {
   dynamic firebaseData;
-  dynamic snapShots;
+  List<Map<String, dynamic>> snapShots = [];
 
   Future<void> getData() async {
     try {
@@ -40,6 +41,19 @@ class _SnapshotsState extends State<Snapshots> {
     getData();
   }
 
+  void generateVideo() {
+    print('generating video');
+    print(snapShots);
+    List images = snapShots
+        .map((snapshot) =>
+            {"imgName": snapshot["imageName"], "url": snapshot['url']})
+        .toList();
+    print(images);
+    String videoUrl = callBackendAPI(images) as String;
+    Navigator.pushNamed(context, '/snapshotVideo',
+        arguments: {"videoUrl": videoUrl});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,13 +61,14 @@ class _SnapshotsState extends State<Snapshots> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            StartingDesign("snapshots",
-                "add memories that you would like to capture forever", "home"),
+            StartingDesign("SnapshotS",
+                "Add Memories that you would like to capture forever", "home"),
             CustomButton(
-                text: "Generate Video",
-                callback: () {
-                  print('generating video');
-                }),
+                text: "Check Generated Video",
+                callback: () => Navigator.pushNamed(context, '/snapshotVideo',
+                    arguments: {"videoUrl": 'http://localhost:5000/video'})),
+            CustomButton(
+                text: "Generate Video", callback: () => generateVideo()),
             CustomButton(
                 text: "Add Photos",
                 callback: () async {

@@ -1,3 +1,8 @@
+// ignore: depend_on_referenced_packages
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 
 void createNotif(Map data) {
@@ -34,4 +39,34 @@ void createScheduledNotification(Map data) async {
         // autoDismissible: false,
       ),
       schedule: NotificationCalendar.fromDate(date: scheduleTime));
+}
+
+Future<dynamic> callBackendAPI(dynamic params) async {
+  String? BackendAPI = dotenv.env['BACKEND_URI'];
+  print(BackendAPI);
+
+  Uri uri = Uri.parse('$BackendAPI/movieFromSnaps');
+  String jsonData = jsonEncode({"params": params});
+
+  print(uri);
+  print(params);
+  try {
+    final response = await http.post(uri,
+        headers: {'Content-Type': 'application/json'}, body: jsonData);
+    print(response);
+    print(response.body);
+
+    // var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+    // print(decodedResponse);
+
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      // handle the API error
+      print('API error: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('Network error: $e');
+    return "Error";
+  }
 }
