@@ -84,9 +84,8 @@ class _FaceSearchState extends State<FaceSearch> {
               children: [
                 InAppWebView(
                   key: webViewKey,
-                  initialUrlRequest: URLRequest(
-                      url: Uri.parse(
-                          "https://e543-2401-4900-647f-acc2-d1e6-5762-acc5-1f87.in.ngrok.io/")),
+                  initialUrlRequest:
+                      URLRequest(url: Uri.parse("https://ws.mec.ac.in")),
                   initialOptions: options,
                   pullToRefreshController: pullToRefreshController,
                   onWebViewCreated: (controller) {

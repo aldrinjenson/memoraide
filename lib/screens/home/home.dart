@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            StartingDesign("MEMORIA", "We are here for you", "homes"),
+            StartingDesign("MEMORAIDE", "We are here for you", "homes"),
             CustomButton(
               text: 'Log Out',
               callback: () async {
@@ -97,7 +97,7 @@ class _HomeState extends State<Home> {
             ),
             homeButton(
               context,
-              "GEOLOCATION",
+              "Location",
               "geolocation",
               "testsnap1",
             ),
