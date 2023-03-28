@@ -4,7 +4,7 @@ A flutter based mobile application for people with memory troubles and their car
 
 ## Abstract
 
-People sufferring from alzheimers or other memory realted issues often face a wide varient of problems like:
+People suffering from alzheimers or other memory related issues often face a wide variety of problems like:
 
 1. Forgetting about medicine reminders:
    1. What medicine to have
