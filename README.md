@@ -43,6 +43,7 @@ As of now, our app has features to solve all the above listed problems
 - Journal feature for listing down thoughts and memories
 - Remembrance feature using powerful ML model to list out features of a particular object or a familiar face and then later find details of it using a single snapshot.
 - Notification at regular intervals to help remember about the app and taking snapshot photos.
+- 2-click easy way to send SOS SMS to emergency contact
 
 ## Future plans
 
