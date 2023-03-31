@@ -70,4 +70,4 @@ Check [these](demo/videos)
 
 ## Other links
 
-- Backend repository - [https://github.com/aldrinjenson/memoria-backend](https://github.com/aldrinjenson/memoria-backend)
+- Backend repository - [https://github.com/aldrinjenson/memoraide-backend](https://github.com/aldrinjenson/memoraide-backend)
